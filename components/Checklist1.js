@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
-import { Text, CheckBox, Icon, StyleSheet } from 'react-native-elements';
-import Constants from 'expo-constants';
+import { CheckBox } from 'react-native-elements';
 
-type CheckboxComponentProps = {};
-
-const CheckboxComponent: React.FunctionComponent<CheckboxComponentProps> = () => {
+function CheckboxComponent() {
   const [check1, setCheck1] = useState(false);
   const [check2, setCheck2] = useState(false);
   const [check3, setCheck3] = useState(false);

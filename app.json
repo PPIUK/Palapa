@@ -1,12 +1,12 @@
 {
   "expo": {
-    "name": "palapa-uk",
-    "slug": "snack-f100b109-e5bc-4e81-b020-94bd9fb33be9",
+    "name": "test",
+    "slug": "test",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/PPIUK.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

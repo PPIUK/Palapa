@@ -1,75 +1,66 @@
+import 'react-native-gesture-handler';
 import * as React from 'react';
-import { Button, Text, View, StyleSheet } from 'react-native';
-import Constants from 'expo-constants';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 
-// You can import from local files
-import AssetExample from './components/AssetExample';
-import Checklist1 from './components/Checklist1';
+import DrawerItems from './constants/DrawerItems';
+import NoScreen from './screens/NoScreen';
+import HomeScreen from './screens/HomeScreen';
+import ChecklistUKScreen from './screens/ChecklistUKScreen';
 
-// or any pure javascript modules available in npm
-import { Card } from 'react-native-paper';
+const Drawer = createDrawerNavigator();
 
-function HomeScreen({ navigation }) {
-  return (
-    <>
-    <View style={{ alignItems: 'center'}}>
-      <Text>Home Screen</Text>
-      <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate('Details')}
-      />
-    </View>
-      <Card>
-        <AssetExample />
-      </Card>
-      </>
-  );
+export default function App() {
+ return (
+<NavigationContainer>
+<Drawer.Navigator 
+       drawerType="front"
+       initialRouteName="Profile"
+       screenOptions={{
+         activeTintColor: '#e91e63',
+         itemStyle: { marginVertical: 10 },
+       }}
+
+>
+       {
+         DrawerItems.map(drawer=><Drawer.Screen 
+          key={drawer.name}
+          name={drawer.name} 
+          options={{
+          drawerIcon:({focused})=>
+           drawer.iconType==='Material' ? 
+<MaterialCommunityIcons 
+                name={drawer.iconName}
+                size={24} 
+                color={focused ? "#e91e63" : "black"} 
+            />
+          :
+          drawer.iconType==='Feather' ?
+<Feather 
+              name={drawer.iconName}
+              size={24} 
+              color={focused ? "#e91e63" : "black"} 
+            />
+          :
+<FontAwesome5 
+              name={drawer.iconName}
+              size={24} 
+              color={focused ? "#e91e63" : "black"} 
+            /> 
+          }} 
+            component={
+              drawer.name==='PALAPA' ? HomeScreen 
+                : drawer.name==='Keberangkatan' ? ChecklistUKScreen 
+                  // : drawer.name==='Kepulangan' ? HomeScreen
+                    : NoScreen
+
+          }
+/>)
+       }
+</Drawer.Navigator>
+</NavigationContainer>
+ );
 }
-
-function ChecklistUK() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.paragraph}>
-        Checklist Keberangkatan ke UK
-      </Text>
-      <Card>
-        <Checklist1 />
-      </Card>
-    </View>
-  );
-}
-
-const Stack = createNativeStackNavigator();
-
-function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Details" component={ChecklistUK} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-}
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    paddingTop: Constants.statusBarHeight,
-    backgroundColor: '#ecf0f1',
-    padding: 8,
-  },
-  paragraph: {
-    margin: 24,
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-});
-
-export default App;
-
