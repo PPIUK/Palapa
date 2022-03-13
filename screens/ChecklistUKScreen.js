@@ -1,96 +1,140 @@
-import * as React from 'react';
-import { Button, Text, View, StyleSheet } from 'react-native';
-import { useState} from 'react';
-import Constants from 'expo-constants';
-import { Card } from 'react-native-paper';
-import { LinearProgress } from 'react-native-elements';
-import CheckboxComponent from '../components/CheckBox.js';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import React, { useState } from 'react';
+import { LinearProgress, CheckBox } from 'react-native-elements';
+import dataChecklist from './dataChecklist';
+import {StyleSheet, Text, View, TouchableOpacity, ScrollView, Dimensions} from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
+import { Transition, Transitioning} from 'react-native-reanimated';
+
+const transition = (
+  <Transition.Together>
+    <Transition.In type="fade" durationMs={200} />
+    <Transition.Change />
+    <Transition.Out type="fade" durationMs={200} />
+  </Transition.Together>
+);
 
 export default function ChecklistUKScreen() {
-  const [count, setCount] = useState(0)
-  const [checked1, setChecked1] = useState(false)
-  const [checked2, setChecked2] = useState(false)
-  const [checked3, setChecked3] = useState(false)
-  const [checked4, setChecked4] = useState(false)
-  const [checked5, setChecked5] = useState(false)
-  const [checked6, setChecked6] = useState(false)
+  const [currentIndex, setCurrentIndex] = React.useState(null);
+  const [checkedState, setCheckedState] = useState(
+      new Array(dataChecklist.length).fill(false)
+    );
+    const ref = React.useRef();
+    const handleOnChange = (position) => {
+      const updatedCheckedState = checkedState.map((item, index) =>
+        index === position ? !item : item
+      );
+  
+      setCheckedState(updatedCheckedState);
+    };
+    const progress = checkedState.filter(value => value === true).length / checkedState.length;
     return (
-      <View style={styles.container}>
-      
-        <Text style={styles.paragraph}>
+      <Transitioning.View 
+        ref={ref}
+        transition = {transition}
+        style={styles.container}
+      >
+        <Text style={styles.title}>
           Checklist Keberangkatan ke UK
+        </Text>
+        <Text style={styles.subtitle}>
+          You have completed {(progress*100).toFixed(2)}% of your document
         </Text>
         
         <LinearProgress 
-          style={{ marginVertical: 10 }} 
-          value={count}
+          style={styles.progressbar} 
+          value={progress}
           variant={'determinate'}
+          color = 'black'
         />
-        
-        <Card>
 
-        <TouchableOpacity 
-        onPress={ checked1? ()=> {setCount(count - 1/6); setChecked1(false);} : ()=> {setCount(count + 1/6); setChecked1(true)} }
-        >
-           <CheckboxComponent
-            desc= "Passport" 
-            />
-        </TouchableOpacity>
-        <TouchableOpacity 
-        onPress={ checked2? ()=> {setCount(count - 1/6); setChecked2(false);} : ()=> {setCount(count + 1/6); setChecked2(true)} }
-        >
-           <CheckboxComponent
-            desc= "Visa dan BRP" 
-            />
-        </TouchableOpacity>
-        <TouchableOpacity 
-        onPress={ checked3? ()=> {setCount(count - 1/6); setChecked3(false);} : ()=> {setCount(count + 1/6); setChecked3(true)} }
-        >
-           <CheckboxComponent
-            desc= "Confirmation of Acceptance for studies (CAS)" 
-            />
-        </TouchableOpacity>
-        <TouchableOpacity 
-        onPress={ checked4? ()=> {setCount(count - 1/6); setChecked4(false);} : ()=> {setCount(count + 1/6); setChecked4(true)} }
-        >
-           <CheckboxComponent
-            desc= "Tuberculosis Detection Medical Certificate" 
-            />
-        </TouchableOpacity>
-        <TouchableOpacity 
-        onPress={ checked5? ()=> {setCount(count - 1/6); setChecked5(false);} : ()=> {setCount(count + 1/6); setChecked5(true)} }
-        >
-           <CheckboxComponent
-            desc= "English Language Certificate" 
-            />
-        </TouchableOpacity>
-        <TouchableOpacity 
-        onPress={ checked6? ()=> {setCount(count - 1/6); setChecked6(false);} : ()=> {setCount(count + 1/6); setChecked6(true)} }
-        >
-           <CheckboxComponent
-            desc= "Personal Documents" 
-            />
-        </TouchableOpacity>
-        
+        <ScrollView>
+      
 
-      </Card>
-      </View>
+        {dataChecklist.map(({category, subCategories}, index) =>{
+          return (
+            <TouchableOpacity 
+              key={category} 
+              onPress={() =>{
+                ref.current.animateNextTransition();
+                setCurrentIndex(index === currentIndex ? null : index);
+              }} 
+              style={styles.cardContainer}
+              >
+                <View style={styles.card}>
+                <CheckBox
+                    left
+                    checked={checkedState[index]}
+                    onPress={() => handleOnChange(index)}
+                    checkedColor = 'black'
+                />
+                  <Text style={styles.heading}>{category}</Text>
+                  {index === currentIndex
+                  ? <AntDesign name='right' size={20} style={{padding : 15, transform: [{ rotate: '90deg' }]}} />
+                  : <AntDesign name='right' size={20} style={{padding : 15}}/>
+                  }
+                </View>
+                {index === currentIndex && (
+                <View style={styles.desc}>
+                  <Text>{subCategories}</Text>
+                </View>
+                )}
+            </TouchableOpacity>
+            
+          );
+          
+        })}
+      </ScrollView>
+      </Transitioning.View>
+      
     );
   }
 
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      justifyContent: 'flex-start',
-      paddingTop: Constants.statusBarHeight,
-      backgroundColor: '#ecf0f1',
-      padding: 8,
+      backgroundColor : 'white',
+      alignItems : 'center',
     },
-    paragraph: {
+    title: {
       margin: 24,
-      fontSize: 18,
+      fontSize: 22,
       fontWeight: 'bold',
       textAlign: 'center',
+    },
+    subtitle: {
+      margin: 15,
+      fontSize: 16,
+      fontWeight: 'bold',
+      alignSelf : 'flex-start',
+    },
+    progressbar: {
+      backgroundColor : 'white',
+      height : 20,
+      margin : 20,
+      width: Dimensions.get('window').width - 30,
+      borderRadius:15,
+      borderWidth : 2,
+    },
+    cardContainer: {
+      margin : 10,
+      //borderRadius:15,
+      borderWidth : 1,
+      borderColor : 'black',
+      width: Dimensions.get('window').width - 50,
+    },
+    card: {
+      padding : 1,
+      //borderRadius:10,
+      flexDirection: 'row'
+    },
+    heading: {
+      flex :1,
+      padding : 10,
+      fontSize : 20,
+      fontWeight : '500',
+    },
+    desc:{
+      padding : 15,
+      alignItems : 'center',
     },
   });
