@@ -1,57 +1,72 @@
 import * as React from 'react';
-import { Button, Text, View, Image, StyleSheet, Dimensions } from 'react-native';
+import { SafeAreaView, TouchableOpacity, Button, Text, View, Image, StyleSheet, Dimensions } from 'react-native';
 import Constants from 'expo-constants';
 
 export default function HomeScreen({ navigation }) {
   return (
     <>
     <View>
-      <Text style={styles.header}>PPI UK APP</Text>
-      <Image style={styles.image} source={require('../assets/PPIUK.png')} />
+      <Image style={styles.image} source={require('../assets/PPIUK2.png')} />
       </View >
+      <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.container}>
-      <Button 
-        title="Transportasi"
-        fontSize="20"
-        margin="10"
-        onPress={() => navigation.navigate('Transportasi')}
-      />
-      <Text style={styles.button1}> </Text>
-      <Button 
-        title="Checklist keberangkatan UK"
-        fontSize="10"
-        color="#AA336A"      
-        onPress={() => navigation.navigate('Keberangkatan')}
-      />
-      <Text style={styles.button2}> </Text>
-      <Button 
-        title="Checklist Kepulangan ke ID"
-        fontSize="20"
-        color="#AA336A"      
-        onPress={() => navigation.navigate('Kepulangan')}
-      />
-      <Text style={styles.button1}> </Text>
-      <Button 
-        title="Info terkait Imigrasi"
-        fontSize="20"
-        color="#AA336A"      
-        onPress={() => navigation.navigate('Imigrasi')}
-      />
-      <Text style={styles.button1}> </Text>
-      <Button 
-        title="Kebijakan Terbaru dari Pemerintah UK & Indonesia"
-        fontSize="20"
-        color="#013220"      
-        onPress={() => navigation.navigate('News')}
-      />
-      <Text style={styles.button1}> </Text>
-      <Button 
-        title="Daftar Restoran & Catering Indonesia di UK"
-        fontSize="20"
-        color="#9b870c"      
-        onPress={() => navigation.navigate('Restoran Indonesia')}
-      />                  
-  </View>     
+        <TouchableOpacity
+          style={styles.blueButton}
+          activeOpacity={0.5}
+          onPress={() => navigation.navigate('Transportasi')}> 
+          <Image style={styles.buttonImageIconStyle} source={require('../assets/bus.jpg')} />
+          <Text style={styles.buttonTextStyle}>
+            Transportasi
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.pinkButton}
+          activeOpacity={0.5}
+          onPress={() => navigation.navigate('Keberangkatan')}> 
+          <Image style={styles.buttonImageIconStyle} source={require('../assets/planeuk.jpg')} />
+          <Text style={styles.buttonTextStyle}>
+            Checklist Keberangkatan ke UK
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.pinkButton}
+          activeOpacity={0.5}
+          onPress={() => navigation.navigate('Kepulangan')}> 
+          <Image style={styles.buttonImageIconStyle} source={require('../assets/planeid.jpg')} />
+          <Text style={styles.buttonTextStyle}>
+            Checklist Kepulangan ke Indonesia
+          </Text>
+        </TouchableOpacity>        
+        <TouchableOpacity
+          style={styles.pinkButton}
+          activeOpacity={0.5}
+          onPress={() => navigation.navigate('Imigrasi')}> 
+          <Image style={styles.buttonImageIconStyle} source={require('../assets/imigrasi.jpg')} />
+          <Text style={styles.buttonTextStyle}>
+          Info terkait Imigrasi
+          </Text>
+        </TouchableOpacity>        
+        <TouchableOpacity
+          style={styles.greenButton}
+          activeOpacity={0.5}
+          onPress={() => navigation.navigate('News')}> 
+          <Image style={styles.buttonImageIconStyle} source={require('../assets/policy.jpg')} />
+          <Text style={styles.buttonTextStyle}>
+          Kebijakan Pemerintah UK & Indonesia
+          </Text>
+        </TouchableOpacity>        
+        <TouchableOpacity
+          style={styles.yellowButton}
+          activeOpacity={0.5}
+          onPress={() => navigation.navigate('Restoran Indonesia')}> 
+          <Image style={styles.buttonImageIconStyle} source={require('../assets/food.jpg')} />
+          <Text style={styles.buttonTextStyle}>
+          Daftar Restoran & Catering Indonesia di UK
+          </Text>
+        </TouchableOpacity>                
+      </View>
+    </SafeAreaView>
+    
       </>
   );
 }
@@ -71,24 +86,72 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   header: {
-    margin: 24,
+    margin: 12,
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
   }, 
  image: {
     alignSelf: 'center',
-    width: Dimensions.get('window').width - 50,
+    width: Dimensions.get('window').height - 550,
     resizeMode:'contain',
   }, 
-  button1: {
-    margin: 1,
-    fontSize: 10,
-    color:'black',    
-  },    
-  button2: {
-    margin: 1,
-    fontSize: 10,
-    color:'#FFFFFF',    
+  pinkButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#AA336A',
+    borderWidth: 0.5,
+    borderColor: '#fff',
+    height: 60,
+    borderRadius: 5,
+    margin: 5,
+  },
+  blueButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#0000CD',
+    borderWidth: 0.5,
+    borderColor: '#fff',
+    height: 60,
+    borderRadius: 5,
+    margin: 5,
+  },
+  greenButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#013220',
+    borderWidth: 0.5,
+    borderColor: '#fff',
+    height: 60,
+    borderRadius: 5,
+    margin: 5,
+  },
+  yellowButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#9b870c',
+    borderWidth: 0.5,
+    borderColor: '#fff',
+    height: 60,
+    borderRadius: 5,
+    margin: 5,
+  },
+  buttonImageIconStyle: {
+    padding: 10,
+    margin: 5,
+    height: 50,
+    width: 50,
+    resizeMode: 'stretch',
+  },
+  buttonTextStyle: {
+    color: '#fff',
+    marginBottom: 4,
+    marginLeft: 10,
+  },
+  buttonIconSeparatorStyle: {
+    backgroundColor: '#fff',
+    width: 1,
+    height: 40,
   },    
 });
+
