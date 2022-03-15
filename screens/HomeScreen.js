@@ -5,7 +5,7 @@ import Constants from 'expo-constants';
 export default function HomeScreen({ navigation }) {
   return (
     <>
-    <View>
+    <View style={{backgroundColor:'white'}}>
       <Image style={styles.image} source={require('../assets/PPIUK2.png')} />
       </View >
       <SafeAreaView style={{ flex: 1 }}>

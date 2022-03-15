@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import { LinearProgress, CheckBox } from 'react-native-elements';
 import dataChecklist from './dataChecklist';
 import {StyleSheet, Text, View, TouchableOpacity, ScrollView, Dimensions} from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { Transition, Transitioning} from 'react-native-reanimated';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const transition = (
   <Transition.Together>
@@ -18,15 +19,36 @@ export default function ChecklistUKScreen() {
   const [checkedState, setCheckedState] = useState(
       new Array(dataChecklist.length).fill(false)
     );
-    const ref = React.useRef();
-    const handleOnChange = (position) => {
+  const ref = React.useRef();
+
+  const handleOnChange = (position) => {
       const updatedCheckedState = checkedState.map((item, index) =>
         index === position ? !item : item
       );
   
       setCheckedState(updatedCheckedState);
+      save(updatedCheckedState);
     };
-    const progress = checkedState.filter(value => value === true).length / checkedState.length;
+
+  const save = async (updatedCheckedState) =>{
+      await AsyncStorage.setItem("check", JSON.stringify(updatedCheckedState));
+    }
+
+  const load = async() =>{
+      let jsonValue = await AsyncStorage.getItem("check");
+
+      if (jsonValue !== null){
+        setCheckedState(JSON.parse(jsonValue));
+      }
+    }
+
+  useEffect(() => {
+      load();
+    },[]);
+
+    
+  const progress = checkedState.filter(value => value === true).length / checkedState.length;
+
     return (
       <Transitioning.View 
         ref={ref}
