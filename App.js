@@ -54,8 +54,8 @@ export default function App() {
             component={
               drawer.name==='PALAPA' ? HomeScreen 
                 : drawer.name==='Keberangkatan' ? ChecklistUKScreen 
-                  // : drawer.name==='Kepulangan' ? HomeScreen
-                    : NoScreen
+                : drawer.name==='Kepulangan' ? Kepulangan
+                  : NoScreen
 
           }
 />)
