@@ -1,0 +1,26 @@
+[
+    {
+      "title" : "Langkah Pengurusan Visa",
+      "StudentVisa" : "Langkah Pengurusan Student Visa",
+      "VisitorVisa" : "Langkah Pengurusan Visitor Visa",
+      "DependentVisa" : "Langkah Pengurusan Dependent Visa",
+      "GraduateVisa" : "Langkah Pengurusan Graduate Visa"
+    },
+    {
+      "title" : "Biaya",
+        "StudentVisa" : "Biaya Pengurusan Student Visa",
+        "VisitorVisa" : "Biaya Pengurusan Visitor Visa",
+        "DependentVisa" : "Biaya Pengurusan Dependent Visa",
+        "GraduateVisa" : "Biaya Pengurusan Graduate Visa"
+      
+    },
+    {
+    "title" : "Dokumen yang Diperlukan",
+
+      "StudentVisa" : "Dokumen yang Diperlukan Untuk Student Visa",
+      "VisitorVisa" : "Dokumen yang Diperlukan Untuk Visitor Visa",
+      "DependentVisa" : "Dokumen yang Diperlukan Untuk Dependent Visa",
+      "GraduateVisa" : "Dokumen yang Diperlukan Untuk Graduate Visa"
+    
+    }
+  ]

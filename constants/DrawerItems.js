@@ -28,5 +28,5 @@ export default [
         name:'Restoran Indonesia',
         iconType:'FontAwesome5',
         iconName:'user-friends'
-    }
+    },
  ]

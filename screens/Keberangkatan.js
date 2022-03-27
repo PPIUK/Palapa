@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import { LinearProgress, CheckBox } from 'react-native-elements';
-import dataChecklist from './dataChecklist';
+import keberangkatanCheck from './data/keberangkatanCheck/';
 import {StyleSheet, Text, View, TouchableOpacity, ScrollView, Dimensions} from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { Transition, Transitioning} from 'react-native-reanimated';
@@ -14,10 +14,10 @@ const transition = (
   </Transition.Together>
 );
 
-export default function ChecklistUKScreen() {
+export default function Keberangkatan() {
   const [currentIndex, setCurrentIndex] = React.useState(null);
   const [checkedState, setCheckedState] = useState(
-      new Array(dataChecklist.length).fill(false)
+      new Array(keberangkatanCheck.length).fill(false)
     );
   const ref = React.useRef();
 
@@ -31,11 +31,11 @@ export default function ChecklistUKScreen() {
     };
 
   const save = async (updatedCheckedState) =>{
-      await AsyncStorage.setItem("check", JSON.stringify(updatedCheckedState));
+      await AsyncStorage.setItem("keberangkatan", JSON.stringify(updatedCheckedState));
     }
 
   const load = async() =>{
-      let jsonValue = await AsyncStorage.getItem("check");
+      let jsonValue = await AsyncStorage.getItem("keberangkatan");
 
       if (jsonValue !== null){
         setCheckedState(JSON.parse(jsonValue));
@@ -72,10 +72,10 @@ export default function ChecklistUKScreen() {
         <ScrollView>
       
 
-        {dataChecklist.map(({category, subCategories}, index) =>{
+        {keberangkatanCheck.map(({title, desc}, index) =>{
           return (
             <TouchableOpacity 
-              key={category} 
+              key={title} 
               onPress={() =>{
                 ref.current.animateNextTransition();
                 setCurrentIndex(index === currentIndex ? null : index);
@@ -89,7 +89,7 @@ export default function ChecklistUKScreen() {
                     onPress={() => handleOnChange(index)}
                     checkedColor = 'black'
                 />
-                  <Text style={styles.heading}>{category}</Text>
+                  <Text style={styles.heading}>{title}</Text>
                   {index === currentIndex
                   ? <AntDesign name='right' size={20} style={{padding : 15, transform: [{ rotate: '90deg' }]}} />
                   : <AntDesign name='right' size={20} style={{padding : 15}}/>
@@ -97,7 +97,7 @@ export default function ChecklistUKScreen() {
                 </View>
                 {index === currentIndex && (
                 <View style={styles.desc}>
-                  <Text>{subCategories}</Text>
+                  <Text>{desc}</Text>
                 </View>
                 )}
             </TouchableOpacity>

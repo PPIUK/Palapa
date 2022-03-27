@@ -1,0 +1,42 @@
+[
+    {
+      "title" : "Passport",
+      "desc" : "ini desc pertama"
+    },
+    {
+      "title" : "Visa dan BRP",
+      "desc" : "ini desc kedua"
+    },
+    {
+      "title" : "Confirmation of Acceptance for studies (CAS)",
+      "desc" : "ini desc ketiga"
+    },
+    {
+      "title" : "Tuberculosis Detection Medical Certificate",
+      "desc" : "ini desc keempat"
+    },
+    {
+      "title" : "English Language Certificate",
+      "desc" : "ini desc kelima"
+    },
+    {
+      "title" : "Personal Documents",
+      "desc" : "ini desc kelima"
+    },
+    {
+      "title" : "title1",
+      "desc" : "description"
+    },
+    {
+      "title" : "title2",
+      "desc" : "description"
+    },
+    {
+      "title" : "title3",
+      "desc" : "description"
+    },
+    {
+      "title" : "title4",
+      "desc" : "description"
+    }
+  ]

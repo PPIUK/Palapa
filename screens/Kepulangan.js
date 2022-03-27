@@ -31,11 +31,11 @@ export default function Kepulangan() {
     };
 
   const save = async (updatedCheckedState) =>{
-      await AsyncStorage.setItem("check", JSON.stringify(updatedCheckedState));
+      await AsyncStorage.setItem("kepulangan", JSON.stringify(updatedCheckedState));
     }
 
   const load = async() =>{
-      let jsonValue = await AsyncStorage.getItem("check");
+      let jsonValue = await AsyncStorage.getItem("kepulangan");
 
       if (jsonValue !== null){
         setCheckedState(JSON.parse(jsonValue));
@@ -72,10 +72,10 @@ export default function Kepulangan() {
         <ScrollView>
       
 
-        {kepulangancheck.map(({category, subCategories}, index) =>{
+        {kepulangancheck.map(({title, desc}, index) =>{
           return (
             <TouchableOpacity 
-              key={category} 
+              key={title} 
               onPress={() =>{
                 ref.current.animateNextTransition();
                 setCurrentIndex(index === currentIndex ? null : index);
@@ -89,7 +89,7 @@ export default function Kepulangan() {
                     onPress={() => handleOnChange(index)}
                     checkedColor = 'black'
                 />
-                  <Text style={styles.heading}>{category}</Text>
+                  <Text style={styles.heading}>{title}</Text>
                   {index === currentIndex
                   ? <AntDesign name='right' size={20} style={{padding : 15, transform: [{ rotate: '90deg' }]}} />
                   : <AntDesign name='right' size={20} style={{padding : 15}}/>
@@ -97,7 +97,7 @@ export default function Kepulangan() {
                 </View>
                 {index === currentIndex && (
                 <View style={styles.desc}>
-                  <Text>{subCategories}</Text>
+                  <Text>{desc}</Text>
                 </View>
                 )}
             </TouchableOpacity>
