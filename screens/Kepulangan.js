@@ -5,6 +5,7 @@ import {StyleSheet, Text, View, TouchableOpacity, ScrollView, Dimensions} from '
 import { AntDesign } from '@expo/vector-icons';
 import { Transition, Transitioning} from 'react-native-reanimated';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {CustomHeader} from '../components/CustomHeader';
 
 const transition = (
   <Transition.Together>
@@ -14,7 +15,7 @@ const transition = (
   </Transition.Together>
 );
 
-export default function Kepulangan() {
+export default function Kepulangan({navigation}) {
   const [currentIndex, setCurrentIndex] = React.useState(null);
   const [checkedState, setCheckedState] = useState(
       new Array(kepulangancheck.length).fill(false)
@@ -55,6 +56,7 @@ export default function Kepulangan() {
         transition = {transition}
         style={styles.container}
       >
+        <CustomHeader isHome={true} navigation={navigation}/>
         <Text style={styles.title}>
           Checklist Kepulangan ke ID
         </Text>

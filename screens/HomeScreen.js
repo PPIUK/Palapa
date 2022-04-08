@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { SafeAreaView, TouchableOpacity, Button, Text, View, Image, StyleSheet, Dimensions } from 'react-native';
 import Constants from 'expo-constants';
+import {CustomHeader} from '../components/CustomHeader';
 
 export default function HomeScreen({ navigation }) {
   return (
     <>
     <View style={{backgroundColor:'white'}}>
+    <CustomHeader isHome={true} navigation={navigation}/>
       <Image style={styles.image} source={require('../assets/PPIUK2.png')} />
       </View >
       <SafeAreaView style={{ flex: 1 }}>
