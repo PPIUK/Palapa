@@ -3,7 +3,7 @@ import NoScreen from '../screens/NoScreen';
 import HomeScreen from '../screens/HomeScreen';
 import Keberangkatan from '../screens/Keberangkatan';
 import Kepulangan from '../screens/Kepulangan';
-import Restoranmenu from '../screens/Restoran';
+import Restoranmenu from '../screens/Restoran/Restoran';
 import {ImigrasiStack} from './Stack';
 
 

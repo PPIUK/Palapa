@@ -38,7 +38,7 @@ export default function Imigrasi({ navigation }) {
         <ScrollView>
       
 
-        {imigrasi.map(({title, desc, link}, index) =>{
+        {imigrasi.map(({title, desc}, index) =>{
           return (
             <TouchableOpacity 
               key={title} 
