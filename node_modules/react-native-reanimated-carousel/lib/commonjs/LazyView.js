@@ -1,0 +1,2 @@
+var _interopRequireDefault=require("@babel/runtime/helpers/interopRequireDefault");Object.defineProperty(exports,"__esModule",{value:true});exports.LazyView=void 0;var _react=_interopRequireDefault(require("react"));var LazyView=function LazyView(props){var shouldUpdate=props.shouldUpdate,children=props.children;if(!shouldUpdate){return _react.default.createElement(_react.default.Fragment,null);}return _react.default.createElement(_react.default.Fragment,null,children);};exports.LazyView=LazyView;
+//# sourceMappingURL=LazyView.js.map

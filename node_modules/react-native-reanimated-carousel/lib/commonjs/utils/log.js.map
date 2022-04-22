@@ -1,0 +1,1 @@
+{"version":3,"sources":["log.ts"],"names":["log","console"],"mappings":"yEAIO,QAASA,CAAAA,GAAT,EAA0B,cAC7B,UAAAC,OAAO,EAACD,GAAR,2BACH","sourcesContent":["/**\n * In worklet\n * e.g. runOnJS(lop)(...);\n */\nexport function log(...msg: any) {\n    console.log(...msg);\n}\n"]}
