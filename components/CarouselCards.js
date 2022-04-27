@@ -10,7 +10,7 @@ function CarouselCards({ navigation }) {
     const isCarousel = React.useRef(null);
 
     return (
-        <View>
+        <View style={{backgroundColor:"white"}}>
             <Carousel
                 layout="default" // default or stack or tinder
                 layourCardOffset={9}
@@ -30,7 +30,7 @@ function CarouselCards({ navigation }) {
             {data[index]["title"] == "News 📰" ? 
                 <Button 
                     onPress={
-                        () => {navigation.navigate("Web");}
+                        () => {navigation.navigate("NEWS");}
                     }
                     title='Baca lebih lanjut'
                 /> 
