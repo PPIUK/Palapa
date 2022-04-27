@@ -2,16 +2,29 @@ import * as React from 'react';
 import { SafeAreaView, TouchableOpacity, Button, Text, View, Image, StyleSheet, Dimensions } from 'react-native';
 import Constants from 'expo-constants';
 import {CustomHeader} from '../components/CustomHeader';
+import { ScrollView } from 'react-native-gesture-handler';
+import CarouselCards from '../components/CarouselCards';
 
 export default function HomeScreen({ navigation }) {
   return (
     <>
+    <ScrollView>
     <View style={{backgroundColor:'white'}}>
-    <CustomHeader isHome={true} navigation={navigation}/>
-      <Image style={styles.image} source={require('../assets/PPIUK2.png')} />
-      </View >
-      <SafeAreaView style={{ flex: 1 }}>
+      <CustomHeader isHome={true} navigation={navigation}/>
+      {/* <Image style={styles.image} source={require('../assets/PPIUK2.png')} /> */}
+      <CarouselCards />
+    </View >
+    <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.container}>
+       <TouchableOpacity
+          style={styles.orangeButton}
+          activeOpacity={0.5}
+          onPress={() => navigation.navigate('News')}> 
+          <Image style={styles.buttonImageIconStyle} source={require('../assets/news.jpeg')} />
+          <Text style={styles.buttonTextStyle}>
+            News
+          </Text>
+        </TouchableOpacity>
         <TouchableOpacity
           style={styles.blueButton}
           activeOpacity={0.5}
@@ -68,7 +81,7 @@ export default function HomeScreen({ navigation }) {
         </TouchableOpacity>                
       </View>
     </SafeAreaView>
-    
+    </ScrollView>
       </>
   );
 }
@@ -132,6 +145,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#9b870c',
+    borderWidth: 0.5,
+    borderColor: '#fff',
+    height: 60,
+    borderRadius: 5,
+    margin: 5,
+  },
+  orangeButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#fb8500',
     borderWidth: 0.5,
     borderColor: '#fff',
     height: 60,

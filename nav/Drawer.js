@@ -4,8 +4,8 @@ import HomeScreen from '../screens/HomeScreen';
 import Keberangkatan from '../screens/Keberangkatan';
 import Kepulangan from '../screens/Kepulangan';
 import Restoranmenu from '../screens/Restoran/Restoran';
+import Web from '../screens/Web';
 import {ImigrasiStack} from './Stack';
-
 
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -57,6 +57,7 @@ export function MainDrawer(){
             : drawer.name==='Kepulangan' ? Kepulangan
             : drawer.name==='Imigrasi' ? ImigrasiStack
             : drawer.name==='Restoran Indonesia' ? Restoranmenu
+            : drawer.name==='News' ? Web
                 : NoScreen
         }
         
