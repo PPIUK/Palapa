@@ -3,7 +3,6 @@ import { View, Button } from "react-native";
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import CarouselData from '../constants/CarouselData';
 import CarouselCardItem, { SLIDER_WIDTH, ITEM_WIDTH } from './CarouselCardItem';
-import Web from '../screens/Web';
 
 function CarouselCards({ navigation }) {
     const [index, setIndex] = React.useState(0);
@@ -27,14 +26,12 @@ function CarouselCards({ navigation }) {
                 renderItem = {CarouselCardItem}
             />
 
-            {data[index]["title"] == "News 📰" ? 
-                <Button 
-                    onPress={
-                        () => {navigation.navigate("NEWS");}
-                    }
-                    title='Baca lebih lanjut'
-                /> 
-            : null}
+            <Button 
+                onPress={
+                    () => {navigation.navigate("News");}
+                }
+                title='Baca lebih lanjut'
+            /> 
             
             <Pagination
                 dotsLength={data.length}
@@ -53,9 +50,8 @@ function CarouselCards({ navigation }) {
                 animatedDuration={1000}
                 animatedFriction={10}
             />
-
         </View>
     );
 }
-
+        
 export default CarouselCards;

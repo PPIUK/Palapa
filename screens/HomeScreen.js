@@ -4,19 +4,16 @@ import Constants from 'expo-constants';
 import {CustomHeader} from '../components/CustomHeader';
 import { ScrollView } from 'react-native-gesture-handler';
 import CarouselCards from '../components/CarouselCards';
-import { CarouselStack } from '../nav/Stack';
 
 export default function HomeScreen({ navigation }) {
   return (
     <>
-    <ScrollView contentContainerStyle={{ flex: 1 }}>
+    <ScrollView>
     <View style={{backgroundColor:'white'}}>
       <CustomHeader isHome={true} navigation={navigation}/>
-      {/* <Image style={styles.image} source={require('../assets/PPIUK2.png')} /> */}
-      {/* <CarouselCards /> */}
+      <CarouselCards navigation={navigation}/>
     </View >
-    <CarouselStack />
-    <SafeAreaView style={{ flex: 0.7 }}>
+    <SafeAreaView>
       <View style={styles.container}>
        <TouchableOpacity
           style={styles.orangeButton}
