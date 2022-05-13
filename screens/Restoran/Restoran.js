@@ -81,7 +81,7 @@ export default function Restoran({ navigation }) {
               <TouchableOpacity 
                 key={index} 
                 onPress={() =>{
-
+                  navigation.navigate('DetailRestoran', {ppiIndex: value, restoIndex: index})
                 }} 
                 style={styles.cardContainer}
               >
@@ -107,9 +107,6 @@ export default function Restoran({ navigation }) {
       flex: 1,
       backgroundColor : 'white',
       alignItems : 'center',
-    },
-    header: {
-      width: '90%'
     },
     title: {
       fontSize: 30,

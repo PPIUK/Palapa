@@ -8,9 +8,10 @@ import CarouselCards from '../components/CarouselCards';
 export default function HomeScreen({ navigation }) {
   return (
     <>
+    <CustomHeader isHome={true} navigation={navigation}/>
     <ScrollView>
     <View style={{backgroundColor:'white'}}>
-      <CustomHeader isHome={true} navigation={navigation}/>
+      
       <CarouselCards navigation={navigation}/>
     </View >
     <SafeAreaView>

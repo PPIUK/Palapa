@@ -3,6 +3,7 @@
     "title" : "Aberdeen",
     "restoran" : [
       {
+        "id" : "1",
         "nama" : "Triple Hot Spicy Blablablabla",
         "alamat" : "link gmaps",
         "tags" : "#masakanpadang #bakso #taglainnya",
@@ -10,6 +11,7 @@
         "jam" : "Sen - Min  08:00 AM - 08:00 PM"
       },
       {
+        "id" : "2",
         "nama" : "Triple Hot Spicy Blablablabla",
         "alamat" : "link gmaps",
         "tags" : "#masakanpadang #bakso #taglainnya",
@@ -17,6 +19,7 @@
         "jam" : "Sen - Min  08:00 AM - 08:00 PM"
       },
       {
+        "id" : "3",
         "nama" : "Triple Hot Spicy Blablablabla",
         "alamat" : "link gmaps",
         "tags" : "#masakanpadang #bakso #taglainnya",
@@ -29,6 +32,7 @@
     "title" : "Belfast",
     "restoran" : [
       {
+        "id" : "4",
         "nama" : "Triple Hot Spicy Blablablabla",
         "alamat" : "link gmaps",
         "tags" : "#masakanpadang #bakso #taglainnya",
@@ -36,6 +40,7 @@
         "jam" : "Sen - Min  08:00 AM - 08:00 PM"
       },
       {
+        "id" : "5",
         "nama" : "Triple Hot Spicy Blablablabla",
         "alamat" : "link gmaps",
         "tags" : "#masakanpadang #bakso #taglainnya",
@@ -43,6 +48,7 @@
         "jam" : "Sen - Min  08:00 AM - 08:00 PM"
       },
       {
+        "id" : "6",
         "nama" : "Triple Hot Spicy Blablablabla",
         "alamat" : "link gmaps",
         "tags" : "#masakanpadang #bakso #taglainnya",
@@ -55,6 +61,7 @@
     "title" : "Birmingham",
     "restoran" : [
       {
+        "id" : "7",
         "nama" : "Triple Hot Spicy Blablablabla",
         "alamat" : "link gmaps",
         "tags" : "#masakanpadang #bakso #taglainnya",
@@ -67,6 +74,7 @@
     "title" : "Bournemouth",
     "restoran" : [
       {
+        "id" : "8",
         "nama" : "Triple Hot Spicy Blablablabla",
         "alamat" : "link gmaps",
         "tags" : "#masakanpadang #bakso #taglainnya",
