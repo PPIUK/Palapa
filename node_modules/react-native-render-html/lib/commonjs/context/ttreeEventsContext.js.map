@@ -1,0 +1,1 @@
+{"version":3,"sources":["ttreeEventsContext.ts"],"names":["ttreeEventsContext"],"mappings":";;;;;;;AAAA;;AAGA,MAAMA,kBAAkB,gBAAG,0BAA2B,EAA3B,CAA3B;eAEeA,kB","sourcesContent":["import { createContext } from 'react';\nimport { TTreeEvents } from '../internal-types';\n\nconst ttreeEventsContext = createContext<TTreeEvents>({});\n\nexport default ttreeEventsContext;\n"]}

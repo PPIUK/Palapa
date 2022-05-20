@@ -31,12 +31,12 @@ const client = new ApolloClient({
 const App = () => {
   return (
     <NavigationContainer>
-      {/* <ApolloClient client={client}> */}
+      <ApolloProvider client={client}>
         <Stack.Navigator>
           <Stack.Screen name="Posts" component={Posts}></Stack.Screen>
           <Stack.Screen name="Post" component={Post}></Stack.Screen>
         </Stack.Navigator>
-      {/* </ApolloClient> */}
+      </ApolloProvider>
     </NavigationContainer>
   )
 }

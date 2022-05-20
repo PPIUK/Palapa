@@ -1,0 +1,89 @@
+{
+  "name": "@native-html/transient-render-engine",
+  "version": "11.2.3",
+  "description": "An engine which produces an intermediary structure from HTML to create a React Native render tree.",
+  "main": "lib/commonjs/index.js",
+  "types": "lib/typescript/index.d.ts",
+  "react-native": "src/",
+  "files": [
+    "lib",
+    "src"
+  ],
+  "homepage": "https://github.com/native-html/core/tree/master/packages/transient-render-engine#readme",
+  "bugs": {
+    "url": "https://github.com/native-html/core/issues"
+  },
+  "author": "Jules Sam. Randolph <jules.sam.randolph@gmail.com> (https://github.com/jsamr)",
+  "license": "MIT",
+  "keywords": [
+    "react-native",
+    "react-native-render-html",
+    "CSS"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/native-html/core.git",
+    "directory": "packages/transient-render-engine"
+  },
+  "scripts": {
+    "test": "yarn test:jest && yarn test:ts && yarn test:lint",
+    "test:jest": "jest src/",
+    "test:ts": "tsc --noEmit",
+    "test:lint": "eslint --ext ts,tsx src/",
+    "build": "bob build",
+    "prepack": "yarn run build"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.13.16",
+    "@babel/core": "^7.14.0",
+    "@babel/plugin-transform-react-jsx": "^7.13.12",
+    "@babel/preset-env": "^7.14.2",
+    "@babel/preset-typescript": "^7.13.0",
+    "@babel/runtime": "^7.14.0",
+    "@react-native-community/bob": "^0.17.1",
+    "@release-it/conventional-changelog": "^2.0.1",
+    "@tsconfig/react-native": "^1.0.3",
+    "@types/jest": "^26.0.23",
+    "@types/react-native": "^0.64.4",
+    "babel-jest": "^26.6.3",
+    "dom-serializer": "^1.3.2",
+    "eslint": "^7.25.0",
+    "jest": "^26.6.3",
+    "metro-react-native-babel-preset": "^0.66.0",
+    "prettier": "^2.2.1",
+    "react": "17.0.2",
+    "release-config": "1.0.0",
+    "release-it": "^14.6.1",
+    "typescript": "~4.2.4"
+  },
+  "peerDependencies": {
+    "@types/react-native": "*",
+    "react-native": "^*"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "@react-native-community/bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      "commonjs",
+      [
+        "typescript",
+        {
+          "project": "tsconfig.build.json"
+        }
+      ]
+    ]
+  },
+  "dependencies": {
+    "@native-html/css-processor": "1.11.0",
+    "@types/ramda": "^0.27.44",
+    "csstype": "^3.0.9",
+    "domelementtype": "^2.2.0",
+    "domhandler": "^4.2.2",
+    "domutils": "^2.8.0",
+    "htmlparser2": "^7.1.2",
+    "ramda": "^0.27.2"
+  }
+}

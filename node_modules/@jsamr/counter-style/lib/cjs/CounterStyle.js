@@ -1,0 +1,124 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const getAlphanumFromUnicodeRange_1 = __importDefault(require("./getAlphanumFromUnicodeRange"));
+const makeAlphanumMaxlenComputer_1 = __importDefault(require("./makeAlphanumMaxlenComputer"));
+const makeCSEngine_1 = __importDefault(require("./makeCSEngine"));
+const makeCSRenderer_1 = __importDefault(require("./makeCSRenderer"));
+const codepointLength_1 = __importDefault(require("./utils/codepointLength"));
+const mod = (value, divisor) => ((value % divisor) + divisor) % divisor;
+function makeCSRendererFromFormatter(formatter) {
+    return makeCSRenderer_1.default(makeCSEngine_1.default(formatter));
+}
+function getMaxLenInSymbols(lens, from = 0, to) {
+    to = typeof to === 'number' ? to : lens.length;
+    return lens.slice(from, to + 1).reduce((p, c) => Math.max(p, c), 0);
+}
+function numeric(renderer, length) {
+    return renderer
+        .withMaxLengthComputer(makeAlphanumMaxlenComputer_1.default(length, false))
+        .withNegative('-');
+}
+function alphabetic(renderer, length) {
+    return renderer
+        .withMaxLengthComputer(makeAlphanumMaxlenComputer_1.default(length, true))
+        .withRange(1, Infinity);
+}
+/**
+ * A static object to build counter style renderers.
+ * See {@link CounterStyleStatic}.
+ *
+ * @public
+ */
+const CounterStyle = Object.freeze({
+    raw: (formatter) => {
+        return makeCSRendererFromFormatter(formatter);
+    },
+    cyclic: (...symbols) => {
+        const symbolLenghts = symbols.map(codepointLength_1.default);
+        const maxLen = getMaxLenInSymbols(symbolLenghts);
+        const renderer = symbols.length === 1
+            ? makeCSRendererFromFormatter(() => symbols[0])
+            : makeCSRendererFromFormatter((index) => symbols[mod(index - 1, symbols.length)]);
+        return renderer.withMaxLengthComputer((min, max) => {
+            return maxLen === 1 || max - min + 1 >= symbols.length
+                ? maxLen
+                : getMaxLenInSymbols(symbolLenghts, min - 1, max - 1);
+        });
+    },
+    fixed: (...symbols) => {
+        const symbolLenghts = symbols.map(codepointLength_1.default);
+        const maxLen = getMaxLenInSymbols(symbolLenghts);
+        return makeCSRendererFromFormatter((index) => symbols[index - 1])
+            .withRange(1, symbols.length)
+            .withMaxLengthComputer((min, max) => {
+            return maxLen === 1
+                ? maxLen
+                : getMaxLenInSymbols(symbolLenghts, min - 1, max - 1);
+        });
+    },
+    symbolic: (...symbols) => makeCSRendererFromFormatter((index) => symbols[mod(index - 1, symbols.length)].repeat(Math.ceil(index / symbols.length)))
+        .withRange(1, Infinity)
+        .withMaxLengthComputer((min, max, defaultCmp) => {
+        // Just iterate over the last n elements until max, with n the number
+        // of symbols.
+        return defaultCmp(max < symbols.length ? min : max - symbols.length, max);
+    }),
+    alphabetic: (...symbols) => {
+        return alphabetic(makeCSRendererFromFormatter((index) => {
+            let result = '';
+            while (index > 0) {
+                index--;
+                result = symbols[mod(index, symbols.length)] + result;
+                index = Math.floor(index / symbols.length);
+            }
+            return result;
+        }), symbols.length);
+    },
+    numeric: (...symbols) => {
+        return numeric(makeCSRendererFromFormatter((index) => {
+            if (index === 0) {
+                return symbols[0];
+            }
+            else {
+                let result = '';
+                while (index > 0) {
+                    result = symbols[mod(index, symbols.length)] + result;
+                    index = Math.floor(index / symbols.length);
+                }
+                return result;
+            }
+        }), symbols.length);
+    },
+    numericFromUnicodeRange: (originUnicode, base) => {
+        return numeric(makeCSRendererFromFormatter((index) => getAlphanumFromUnicodeRange_1.default(index, originUnicode, base, false)), base);
+    },
+    alphabeticFromUnicodeRange: (originUnicode, alphabetLen) => {
+        return alphabetic(makeCSRendererFromFormatter((index) => {
+            return getAlphanumFromUnicodeRange_1.default(index, originUnicode, alphabetLen, true);
+        }), alphabetLen);
+    },
+    additive: (symbols) => {
+        const values = Object.keys(symbols)
+            .map((value) => parseInt(value, 10))
+            .sort((a, b) => b - a);
+        return makeCSRendererFromFormatter((index) => {
+            if (index === 0) {
+                return symbols[0];
+            }
+            let result = '';
+            for (const value of values) {
+                if (index >= value && value > 0) {
+                    const repeat = Math.floor(index / value);
+                    result += symbols[value].repeat(repeat);
+                    index -= repeat * value;
+                }
+            }
+            return index === 0 ? result : undefined;
+        }).withRange(values.length ? values[values.length - 1] : 0, 0 in symbols && values.length === 1 ? 0 : values.length ? Infinity : -1);
+    }
+});
+exports.default = CounterStyle;
+//# sourceMappingURL=CounterStyle.js.map

@@ -1,0 +1,1 @@
+{"version":3,"sources":["normalizeFontName.ts"],"names":["normalizeFontName","fontName","replace","trim"],"mappings":";;;;;;;AAAe,SAASA,iBAAT,CAA2BC,QAA3B,EAA6C;AAC1D,SAAOA,QAAQ,CAACC,OAAT,CAAiB,OAAjB,EAA0B,EAA1B,EAA8BC,IAA9B,EAAP;AACD","sourcesContent":["export default function normalizeFontName(fontName: string) {\n  return fontName.replace(/[\"']/g, '').trim();\n}\n"]}
