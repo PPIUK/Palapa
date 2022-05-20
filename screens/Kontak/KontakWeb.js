@@ -1,16 +1,15 @@
 import * as React from 'react';
 import { View, Dimensions } from 'react-native';
 import { WebView } from "react-native-webview";
-import { CustomHeader } from '../components/CustomHeader';
 
 const windowSize = Dimensions.get('window');
 
-const Web = (navigation) => {
+const KontakWeb = () => {
     return (
         <View style={{width: windowSize.width, height: windowSize.height-135}}>
-          <WebView source={{ uri: 'https://ppiuk.id/berita' }} />
+          <WebView source={{ uri: 'https://ppiuk.id/ppi-cabang/' }} />
         </View>
     );
 }
 
-export default Web;
+export default KontakWeb;

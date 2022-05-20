@@ -4,6 +4,7 @@ import HomeScreen from '../screens/HomeScreen';
 import Keberangkatan from '../screens/Keberangkatan';
 import Kepulangan from '../screens/Kepulangan';
 import NewsScreen from '../screens/NewsScreen';
+import KontakScreen from '../screens/KontakScreen';
 import {ImigrasiStack, RestoranStack} from './Stack';
 
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -58,6 +59,7 @@ export function MainDrawer(){
             : drawer.name==='Imigrasi' ? ImigrasiStack
             : drawer.name==='Restoran Indonesia' ? RestoranStack
             : drawer.name==='News' ? NewsScreen
+            : drawer.name==='Kontak' ? KontakScreen
                 : NoScreen
         }
         

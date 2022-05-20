@@ -78,6 +78,15 @@ export default function HomeScreen({ navigation }) {
           <Text style={styles.buttonTextStyle}>
           Daftar Restoran & Catering Indonesia di UK
           </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.lightBlueButton}
+          activeOpacity={0.5}
+          onPress={() => navigation.navigate('Kontak')}> 
+          <Image style={styles.buttonImageIconStyle} source={require('../assets/kontak.jpg')} />
+          <Text style={styles.buttonTextStyle}>
+            Kontak
+          </Text>
         </TouchableOpacity>                
       </View>
     </SafeAreaView>
@@ -111,6 +120,16 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').height - 550,
     resizeMode:'contain',
   }, 
+  lightBlueButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'lightblue',
+    borderWidth: 0.5,
+    borderColor: '#fff',
+    height: 60,
+    borderRadius: 5,
+    margin: 5,
+  },
   pinkButton: {
     flexDirection: 'row',
     alignItems: 'center',
