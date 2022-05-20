@@ -3,7 +3,12 @@ import { SafeAreaView, TouchableOpacity, Button, Text, View, Image, StyleSheet, 
 import Constants from 'expo-constants';
 import {CustomHeader} from '../components/CustomHeader';
 import { ScrollView } from 'react-native-gesture-handler';
-import CarouselCards from '../components/CarouselCards';
+import CarouselData from '../constants/CarouselData';
+
+
+const CARD_WIDTH = Dimensions.get('window').width * 0.95
+const CARD_HEIGHT = Dimensions.get('window').height * 0.3
+const SPACING_FOR_CARD_INSET = 5
 
 export default function HomeScreen({ navigation }) {
   return (
@@ -11,8 +16,46 @@ export default function HomeScreen({ navigation }) {
     <CustomHeader isHome={true} navigation={navigation}/>
     <ScrollView>
     <View style={{backgroundColor:'white'}}>
-      
-      <CarouselCards navigation={navigation}/>
+
+
+  {
+  //https://medium.com/nerd-for-tech/react-native-create-a-horizontal-snap-scrollview-e1d01ac3ba09
+  }
+     <ScrollView 
+     horizontal // Change the direction to horizontal
+     pagingEnabled // Enable paging
+     decelerationRate={0} // Disable deceleration
+     snapToInterval={CARD_WIDTH+10} // Calculate the size for a card including marginLeft and marginRight
+     snapToAlignment='center' // Snap to the center
+     contentInset={{ // iOS ONLY
+       top: 0,
+       left: SPACING_FOR_CARD_INSET, // Left spacing for the very first card
+       bottom: 0,
+       right: SPACING_FOR_CARD_INSET // Right spacing for the very last card
+     }}
+     contentContainerStyle={{ // contentInset alternative for Android
+       paddingHorizontal: Platform.OS === 'android' ? SPACING_FOR_CARD_INSET : 0 // Horizontal spacing before and after the ScrollView
+     }}>
+        {CarouselData.map(({title, body, imgUrl}, index) =>{
+          return (
+            <TouchableOpacity 
+              key={title} 
+              onPress={() => {navigation.navigate("News");}} 
+              >
+                <View style={styles.cardStyle}>
+                <Image 
+                  source={{ uri: imgUrl }}
+                  style={styles.image}
+                />
+                <View style={[styles.newstitle, styles.shadow]}>
+                  <Text>{body}</Text>
+                </View>
+                </View>
+            </TouchableOpacity>
+          );  
+        })}
+      </ScrollView>
+
     </View >
     <SafeAreaView>
       <View style={styles.container}>
@@ -78,7 +121,16 @@ export default function HomeScreen({ navigation }) {
           <Text style={styles.buttonTextStyle}>
           Daftar Restoran & Catering Indonesia di UK
           </Text>
-        </TouchableOpacity>                
+        </TouchableOpacity>    
+        <TouchableOpacity
+          style={styles.yellowButton}
+          activeOpacity={0.5}
+          onPress={() => navigation.navigate('Events')}> 
+          <Image style={styles.buttonImageIconStyle} source={require('../assets/food.jpg')} />
+          <Text style={styles.buttonTextStyle}>
+          Events
+          </Text>
+        </TouchableOpacity>                 
       </View>
     </SafeAreaView>
     </ScrollView>
@@ -105,11 +157,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
-  }, 
- image: {
-    alignSelf: 'center',
-    width: Dimensions.get('window').height - 550,
-    resizeMode:'contain',
   }, 
   pinkButton: {
     flexDirection: 'row',
@@ -178,5 +225,35 @@ const styles = StyleSheet.create({
     width: 1,
     height: 40,
   },    
+  image: {
+    width: CARD_WIDTH,
+    height: CARD_HEIGHT-30,
+  },
+  cardStyle: {
+    width: CARD_WIDTH,
+    height: CARD_HEIGHT,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    margin: 5,
+    borderRadius: 15
+  },
+  newstitle:{
+  position: 'absolute', 
+  top: CARD_HEIGHT * 0.8, 
+  justifyContent: 'center', 
+  alignItems: 'center',
+  width: CARD_WIDTH * 0.9,
+  height : 50,
+  borderRadius:5,
+  padding: 5,
+  backgroundColor: 'white',
+  },
+  shadow: {
+    shadowColor: '#171717',
+    shadowOffset: {width: -2, height: 4},
+    shadowOpacity: 0.1,
+    shadowRadius: 1,
+    elevation: 20,
+  },
 });
 

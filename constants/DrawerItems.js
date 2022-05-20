@@ -29,4 +29,9 @@ export default [
         iconType:'FontAwesome5',
         iconName:'user-friends'
     },
+    {
+        name:'Events',
+        iconType:'FontAwesome5',
+        iconName:'user-friends'
+    },
  ]
