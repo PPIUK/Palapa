@@ -7,7 +7,7 @@ export default function KontakScreen({navigation}) {
    return (
       
       <View style={{flex:1, alignItems: 'center'}}>
-         <CustomHeader isHome={true} navigation={navigation}/>
+         <CustomHeader isHome={false} navigation={navigation}/>
          <KontakWeb />
       </View>
    );
