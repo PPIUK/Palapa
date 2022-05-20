@@ -34,4 +34,9 @@ export default [
         iconType:'FontAwesome5',
         iconName:'user-friends'
     },
+    {
+        name:'Kontak',
+        iconType:'FontAwesome5',
+        iconName:'user-friends'
+    },
  ]

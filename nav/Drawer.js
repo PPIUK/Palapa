@@ -5,6 +5,7 @@ import Keberangkatan from '../screens/Keberangkatan';
 import Kepulangan from '../screens/Kepulangan';
 import NewsScreen from '../screens/NewsScreen';
 import {ImigrasiStack, RestoranStack, EventsStack} from './Stack';
+import KontakScreen from '../screens/KontakScreen';
 
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -59,6 +60,7 @@ export function MainDrawer(){
             : drawer.name==='Restoran Indonesia' ? RestoranStack
             : drawer.name==='News' ? NewsScreen
             : drawer.name==='Events' ? EventsStack
+            : drawer.name==='Kontak' ? KontakScreen
                 : NoScreen
         }
         

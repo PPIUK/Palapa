@@ -131,6 +131,15 @@ export default function HomeScreen({ navigation }) {
           Events
           </Text>
         </TouchableOpacity>                 
+        <TouchableOpacity
+          style={styles.lightBlueButton}
+          activeOpacity={0.5}
+          onPress={() => navigation.navigate('Kontak')}> 
+          <Image style={styles.buttonImageIconStyle} source={require('../assets/kontak.jpg')} />
+          <Text style={styles.buttonTextStyle}>
+            Kontak
+          </Text>
+        </TouchableOpacity>                
       </View>
     </SafeAreaView>
     </ScrollView>
@@ -158,6 +167,17 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   }, 
+
+  lightBlueButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'lightblue',
+    borderWidth: 0.5,
+    borderColor: '#fff',
+    height: 60,
+    borderRadius: 5,
+    margin: 5,
+  },
   pinkButton: {
     flexDirection: 'row',
     alignItems: 'center',
