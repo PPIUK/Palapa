@@ -11,73 +11,131 @@
 //  );
 // }
 
+import { StyleSheet, Text, View, TouchableOpacity, Dimensions, Image } from 'react-native';
 import React from 'react';
-import { Text, View, Image } from 'react-native';
-import ApolloClient from 'apollo-boost';
-import { ApolloProvider } from 'react-apollo';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from 'react-apollo';
+import { ScrollView } from 'react-native-gesture-handler';
+
+const CARD_WIDTH = Dimensions.get('window').width * 0.95;
+const CARD_HEIGHT = Dimensions.get('window').height * 0.3;
+const SPACING_FOR_CARD_INSET = 5;
 
 const client = new ApolloClient({
   uri: 'https://ppiuk.id/graphql'
 }); 
   
-const App = () => {
+const App = ({navigation}) => {
   return (
-      <ApolloProvider client={client}>
-          <Query query={gql`
-          {
-              posts {
-                  edges {
+    <ApolloProvider client={client}>
+      <Query query={gql`
+      {
+          posts {
+              edges {
+                node {
+                  title
+                  slug
+                  id
+                  featuredImage {
                     node {
-                      title
-                      slug
-                      id
-                      featuredImage {
-                        node {
-                          sourceUrl
-                        }
-                      }
+                      sourceUrl
                     }
                   }
+                }
               }
           }
-          `}>
-            {({loading, error, data}) => {
-              if(loading) {
-                return (
-                  <View>
-                    <Text>Loading...</Text>
-                  </View>
-                );
-              }
+      }
+      `}>
+        {({loading, error, data}) => {
+          if(loading) {
+            return (
+              <View>
+                <Text>Loading...</Text>
+              </View>
+            );
+          }
 
-              return (
-                <View>
-                  {data.posts.edges.map((post, key) => {
-                      return (
-                          <View key={key}>
+          return (
+            <ScrollView
+              horizontal // Change the direction to horizontal
+              pagingEnabled // Enable paging
+              decelerationRate={0} // Disable deceleration
+              snapToInterval={CARD_WIDTH+10} // Calculate the size for a card including marginLeft and marginRight
+              snapToAlignment='center' // Snap to the center
+              contentInset={{ // iOS ONLY
+                top: 0,
+                left: SPACING_FOR_CARD_INSET, // Left spacing for the very first card
+                bottom: 0,
+                right: SPACING_FOR_CARD_INSET // Right spacing for the very last card
+              }}
+              contentContainerStyle={{ // contentInset alternative for Android
+                paddingHorizontal: Platform.OS === 'android' ? SPACING_FOR_CARD_INSET : 0 // Horizontal spacing before and after the ScrollView
+              }}>
+                {data.posts.edges.map((post, key) => {
+                  return (
+                      <TouchableOpacity 
+                        key={key}
+                        // onPress={() => {navigation.navigate('News')}}
+                        > 
+                          <View style={styles.cardStyle}>
+                            <Image
+                              source={{uri: post.node.featuredImage.node.sourceUrl}}
+                              resizeMode={'cover'}
+                              style={styles.image}
+                            />
+                            <View style={[styles.newstitle, styles.shadow]}>
                               <Text>{post.node.title}</Text>
-                              <Image
-                                  source={{uri: post.node.featuredImage.node.sourceUrl}}
-                                  resizeMode={'cover'}
-                                  style={{
-                                      width: '100%',
-                                      height: 200,
-                                      borderRadius: 15,
-                                      marginBottom: 5,
-                                  }}
-                              />
+                            </View>
                           </View>
-                      );
-                  })}
-                </View>
-              );
-            }}
-          </Query>
-        
-      </ApolloProvider>
+                      </TouchableOpacity>
+                  );
+              })}
+            </ScrollView>
+          );
+        }}
+      </Query>
+    </ApolloProvider>
   )
 }
 
 export default App;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems:'center',
+    justifyContent: 'center'
+  },
+  image: {
+    width: CARD_WIDTH,
+    height: CARD_HEIGHT-30,
+  },
+  cardStyle: {
+    width: CARD_WIDTH,
+    height: CARD_HEIGHT,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    margin: 5,
+    borderRadius: 15
+  },
+  newstitle:{
+  position: 'absolute', 
+  top: CARD_HEIGHT * 0.8, 
+  justifyContent: 'center', 
+  alignItems: 'center',
+  width: CARD_WIDTH * 0.9,
+  height : 50,
+  borderRadius:5,
+  padding: 5,
+  backgroundColor: 'white',
+  },
+  shadow: {
+    shadowColor: '#171717',
+    shadowOffset: {width: -2, height: 4},
+    shadowOpacity: 0.1,
+    shadowRadius: 1,
+    elevation: 20,
+  },
+})
