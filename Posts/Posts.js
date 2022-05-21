@@ -1,9 +1,9 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import React from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
-const Posts = ({navigation}) => {
+const Posts = () => {
 
   return (
     <Query query={gql`
@@ -39,11 +39,16 @@ const Posts = ({navigation}) => {
                 return (
                     <View key={key}>
                         <Text>{post.node.title}</Text>
-                        <TouchableOpacity onPress={() => {
-                                navigation.navigate('Post', {id: post.node.id});
-                            }}>
-                                <Text>Learn more</Text>
-                        </TouchableOpacity>
+                        <Image
+                            source={{uri: post.node.featuredImage.node.sourceUrl}}
+                            resizeMode={'cover'}
+                            style={{
+                                width: '100%',
+                                height: 200,
+                                borderRadius: 15,
+                                marginBottom: 5,
+                            }}
+                        />
                     </View>
                 );
             })}
@@ -60,6 +65,7 @@ export default Posts
 
 const styles = StyleSheet.create({
     container: {
+        marginTop: 50,
         flex: 1,
         padding: 20
     }

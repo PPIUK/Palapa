@@ -11,18 +11,11 @@
 //  );
 // }
 
-import { StyleSheet, Text, View, Button } from 'react-native';
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
-
 import Posts from './Posts/Posts';
-import Post from './Posts/Post';
-
-const Stack = createStackNavigator();
+import { ScrollView } from 'react-native-gesture-handler';
 
 const client = new ApolloClient({
   uri: 'https://ppiuk.id/graphql'
@@ -30,23 +23,12 @@ const client = new ApolloClient({
   
 const App = () => {
   return (
-    <NavigationContainer>
+    <ScrollView>
       <ApolloProvider client={client}>
-        <Stack.Navigator>
-          <Stack.Screen name="Posts" component={Posts}></Stack.Screen>
-          <Stack.Screen name="Post" component={Post}></Stack.Screen>
-        </Stack.Navigator>
+        <Posts/>
       </ApolloProvider>
-    </NavigationContainer>
+    </ScrollView>
   )
 }
 
 export default App;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems:'center',
-    justifyContent: 'center'
-  }
-})
