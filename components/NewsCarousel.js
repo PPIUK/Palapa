@@ -25,6 +25,7 @@ export function NewsCarousel({ navigation }) {
                       title
                       slug
                       id
+                      uri
                       featuredImage {
                         node {
                           sourceUrl
@@ -38,12 +39,12 @@ export function NewsCarousel({ navigation }) {
             {({loading, error, data}) => {
               if(loading) {
                 return (
-                  <View>
-                    <Text>Loading...</Text>
+                  <View style={styles.cardStyle}>
+                    <Text style={{fontSize: 20, fontStyle: 'italic'}}>Loading...</Text>
                   </View>
                 );
               }
-    
+
               return (
                 <ScrollView
                   horizontal // Change the direction to horizontal
@@ -51,6 +52,7 @@ export function NewsCarousel({ navigation }) {
                   decelerationRate={0} // Disable deceleration
                   snapToInterval={CARD_WIDTH+10} // Calculate the size for a card including marginLeft and marginRight
                   snapToAlignment='center' // Snap to the center
+                  alwaysBounceHorizontal={true}
                   contentInset={{ // iOS ONLY
                     top: 0,
                     left: SPACING_FOR_CARD_INSET, // Left spacing for the very first card
@@ -64,8 +66,9 @@ export function NewsCarousel({ navigation }) {
                       return (
                           <TouchableOpacity 
                             key={key}
-                            onPress={() => {navigation.navigate('News')}}
-                            > 
+                            onPress={() => {
+                                navigation.navigate('News', {uri: post.node.uri})
+                            }}> 
                               <View style={styles.cardStyle}>
                                 <Image
                                   source={{uri: post.node.featuredImage.node.sourceUrl}}
@@ -73,7 +76,7 @@ export function NewsCarousel({ navigation }) {
                                   style={styles.image}
                                 />
                                 <View style={[styles.newstitle, styles.shadow]}>
-                                  <Text>{post.node.title}</Text>
+                                  <Text style={{fontSize: 16, fontWeight:'bold', justifyContent: 'center'}}>{post.node.title}</Text>
                                 </View>
                               </View>
                           </TouchableOpacity>
@@ -91,7 +94,7 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       alignItems:'center',
-      justifyContent: 'center'
+      justifyContent: 'center',
     },
     image: {
       width: CARD_WIDTH,
@@ -106,15 +109,15 @@ const styles = StyleSheet.create({
       borderRadius: 15
     },
     newstitle:{
-    position: 'absolute', 
-    top: CARD_HEIGHT * 0.8, 
-    justifyContent: 'center', 
-    alignItems: 'center',
-    width: CARD_WIDTH * 0.9,
-    height : 50,
-    borderRadius:5,
-    padding: 5,
-    backgroundColor: 'white',
+        position: 'absolute', 
+        top: CARD_HEIGHT * 0.8, 
+        justifyContent: 'center', 
+        alignItems: 'center',
+        width: CARD_WIDTH * 0.9,
+        height : 50,
+        borderRadius:5,
+        padding: 5,
+        backgroundColor: 'white',
     },
     shadow: {
       shadowColor: '#171717',
