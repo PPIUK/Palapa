@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react';
-import {StyleSheet, Text, View, TouchableOpacity, ScrollView, Dimensions} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity, ScrollView, Dimensions, Image} from 'react-native';
 import { Transition, Transitioning} from 'react-native-reanimated';
 import { FontAwesome } from '@expo/vector-icons';
 import {CustomHeader} from '../../components/CustomHeader';
@@ -27,21 +27,12 @@ export default function Restoran({ navigation, route }) {
       <View style={styles.container}>
 
         <CustomHeader isHome={false} navigation={navigation}/>
-        <ScrollView>
-        <View style={{...(Platform.OS !== 'android' && {zIndex: 10}), width:'90%'}}>
-          
-          <Text style={{alignSelf:'center', padding:50,paddingHorizontal:130, borderWidth:1, borderColor:'#004380', borderRadius:15, marginVertical: 10}}>
-            foto resto
-          </Text> 
+        <ScrollView>     
+        <Image style={styles.banner} source={require('../../assets/triplehotspicy.jpg')} />
 
           <Text style={styles.title}>
             {detail.nama}
           </Text>
-        
-          
-        </View>
-
- 
         
         <View style={styles.cardContainer}>
           <View style={styles.desc}>
@@ -71,19 +62,13 @@ export default function Restoran({ navigation, route }) {
                 Menu
             </Text>
             <ScrollView horizontal={true}>
-                <View style={{margin:10, padding:60, backgroundColor:'grey', borderRadius:10}}></View>
-                <View style={{margin:10, padding:60, backgroundColor:'grey', borderRadius:10}}></View>
-                <View style={{margin:10, padding:60, backgroundColor:'grey', borderRadius:10}}></View>
-                <View style={{margin:10, padding:60, backgroundColor:'grey', borderRadius:10}}></View>
+              <Image style={styles.menu} source={require('../../assets/triplehotspicy.jpg')} />
+              <Image style={styles.menu} source={require('../../assets/triplehotspicy.jpg')} />
+              <Image style={styles.menu} source={require('../../assets/triplehotspicy.jpg')} />
+              <Image style={styles.menu} source={require('../../assets/triplehotspicy.jpg')} />
             </ScrollView>
         </View>
 
-        <View style={{margin : 10}}>
-            <Text style={styles.subtitle}>
-                Penilaian
-            </Text>
-        
-        </View>
         </ScrollView>
       </View>
     ); 
@@ -102,6 +87,19 @@ export default function Restoran({ navigation, route }) {
       color: 'black',
       margin: 15,
     
+    },
+    banner:{
+      width: Dimensions.get('window').width - 50,
+      height: 100,
+      borderRadius: 15,
+      alignSelf: 'center',
+    },
+    menu:{
+      height:200,
+      width: 200,
+      borderRadius: 15,
+      alignSelf: 'center',
+      resizeMode: 'contain',
     },
     subtitle: {
         fontSize: 25,

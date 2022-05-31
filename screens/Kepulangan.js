@@ -48,7 +48,7 @@ export default function Kepulangan({navigation}) {
     },[]);
 
     
-  const progress = checkedState.filter(value => value === true).length / kepulangancheck.length;
+  const progress = checkedState.filter(value => value === true).length / checkedState.length;
 
     return (
       <Transitioning.View 
@@ -57,11 +57,14 @@ export default function Kepulangan({navigation}) {
         style={styles.container}
       >
         <CustomHeader isHome={true} navigation={navigation}/>
+        <View style={{backgroundColor:'#D1E4FF', marginVertical:10}}>
         <Text style={styles.title}>
           Checklist Kepulangan ke ID
         </Text>
         <Text style={styles.subtitle}>
-          You have completed {(progress*100).toFixed(2)}% of your document
+          You have completed {}   
+          <Text style={{color:'red'}}>{checkedState.filter(value => value === true).length} out of {checkedState.length}</Text>
+           {} of your document
         </Text>
         
         <LinearProgress 
@@ -70,7 +73,7 @@ export default function Kepulangan({navigation}) {
           variant={'determinate'}
           color = 'black'
         />
-
+        </View>
         <ScrollView>
       
 
@@ -89,17 +92,17 @@ export default function Kepulangan({navigation}) {
                     left
                     checked={checkedState[index]}
                     onPress={() => handleOnChange(index)}
-                    checkedColor = 'black'
+                    checkedColor = 'white'
                 />
                   <Text style={styles.heading}>{title}</Text>
                   {index === currentIndex
-                  ? <AntDesign name='right' size={20} style={{padding : 15, transform: [{ rotate: '90deg' }]}} />
-                  : <AntDesign name='right' size={20} style={{padding : 15}}/>
+                  ? <AntDesign name='right' size={20} style={{color:'white', padding : 15, transform: [{ rotate: '90deg' }]}} />
+                  : <AntDesign name='right' size={20} style={{color:'white', padding : 15}}/>
                   }
                 </View>
                 {index === currentIndex && (
                 <View style={styles.desc}>
-                  <Text>{desc}</Text>
+                  <Text style={{color: 'black'}}>{desc}</Text>
                 </View>
                 )}
             </TouchableOpacity>
@@ -141,24 +144,29 @@ export default function Kepulangan({navigation}) {
     },
     cardContainer: {
       margin : 10,
-      //borderRadius:15,
-      borderWidth : 1,
-      borderColor : 'black',
-      width: Dimensions.get('window').width - 50,
+      borderRadius: 15,
+      backgroundColor : '#004380',
+      width: Dimensions.get('window').width - 40,
     },
     card: {
       padding : 1,
-      //borderRadius:10,
-      flexDirection: 'row'
+      borderRadius:10,
+      flexDirection: 'row',
+      alignItems: 'center',
     },
     heading: {
       flex :1,
       padding : 10,
-      fontSize : 20,
-      fontWeight : '500',
+      fontSize : 15,
+      fontWeight : 'bold',
+      color:'white',
     },
     desc:{
       padding : 15,
+      backgroundColor: 'white',
+      borderWidth: 1,
+      borderColor: '#004380',
+      borderRadius:10,
       alignItems : 'center',
     },
   });

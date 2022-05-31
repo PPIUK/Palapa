@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react';
-import {StyleSheet, Text, View, TouchableOpacity, ScrollView, Dimensions} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity, ScrollView, Dimensions, Image} from 'react-native';
 import { Transition, Transitioning} from 'react-native-reanimated';
 import { FontAwesome } from '@expo/vector-icons';
 import {CustomHeader} from '../../components/CustomHeader';
@@ -29,15 +29,13 @@ export default function Restoran({ navigation }) {
             Events
           </Text>
 
-          <Text style={{alignSelf:'center', padding:30,paddingHorizontal:120, borderWidth:1, borderColor:'#004380', borderRadius:15, marginVertical: 10}}>
-            banner, illustrasi
-          </Text> 
+          <Image style={styles.banner} source={require('../../assets/events.jpg')} />
 
           <Text style={styles.subtitle}>
             Find Events in:
           </Text>
 
-          <View style={{}}>
+          <View>
             <DropDownPicker
                 open={open}
                 value={value}
@@ -82,13 +80,20 @@ export default function Restoran({ navigation }) {
       flex: 1,
       backgroundColor : 'white',
       alignItems : 'center',
+      
     },
     title: {
-      fontSize: 30,
+      fontSize: 40,
       fontWeight: 'bold',
       alignSelf: 'flex-start',
       color: 'red',
-    
+      margin: 15,
+    },
+    banner:{
+      width: Dimensions.get('window').width - 50,
+      height: 150,
+      borderRadius: 15,
+      marginVertical:10,
     },
     subtitle: {
         fontSize: 15,

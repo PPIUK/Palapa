@@ -3,9 +3,9 @@ import NoScreen from '../screens/NoScreen';
 import HomeScreen from '../screens/HomeScreen';
 import Keberangkatan from '../screens/Keberangkatan';
 import Kepulangan from '../screens/Kepulangan';
-import NewsScreen from '../screens/NewsScreen';
+import NewsScreen from '../screens/News/NewsScreen';
 import {ImigrasiStack, RestoranStack, EventsStack} from './Stack';
-import KontakScreen from '../screens/KontakScreen';
+import KontakScreen from '../screens/Kontak/KontakScreen';
 
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { MaterialCommunityIcons } from '@expo/vector-icons';

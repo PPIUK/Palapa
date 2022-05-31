@@ -6,9 +6,9 @@ import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import { ScrollView } from 'react-native-gesture-handler';
 
-const CARD_WIDTH = Dimensions.get('window').width * 0.95
+const CARD_WIDTH = Dimensions.get('window').width * 0.9
 const CARD_HEIGHT = Dimensions.get('window').height * 0.3
-const SPACING_FOR_CARD_INSET = 5
+const SPACING_FOR_CARD_INSET = 20
 
 const client = new ApolloClient({
     uri: 'https://ppiuk.id/graphql'
@@ -55,7 +55,7 @@ export function NewsCarousel({ navigation }) {
                   alwaysBounceHorizontal={true}
                   contentInset={{ // iOS ONLY
                     top: 0,
-                    left: SPACING_FOR_CARD_INSET, // Left spacing for the very first card
+                    left: SPACING_FOR_CARD_INSET , // Left spacing for the very first card
                     bottom: 0,
                     right: SPACING_FOR_CARD_INSET // Right spacing for the very last card
                   }}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react';
-import {StyleSheet, Text, View, TouchableOpacity, ScrollView, Dimensions} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity, ScrollView, Dimensions, Image} from 'react-native';
 import { Transition, Transitioning} from 'react-native-reanimated';
 import { FontAwesome } from '@expo/vector-icons';
 import {CustomHeader} from '../../components/CustomHeader';
@@ -42,9 +42,7 @@ export default function Restoran({ navigation }) {
               </View>
           </TouchableOpacity>
 
-          <Text style={{alignSelf:'center', padding:30,paddingHorizontal:120, borderWidth:1, borderColor:'#004380', borderRadius:15, marginVertical: 10}}>
-            banner, illustrasi
-          </Text> 
+          <Image style={styles.banner} source={require('../../assets/restoran.jpg')} />
 
           <Text style={styles.subtitle}>
             Cari berdasarkan kota:
@@ -113,6 +111,7 @@ export default function Restoran({ navigation }) {
       fontWeight: 'bold',
       alignSelf: 'flex-start',
       color: 'red',
+      marginTop:20,
     
     },
     subtitle: {
@@ -120,7 +119,11 @@ export default function Restoran({ navigation }) {
         alignSelf: 'flex-start',
         marginVertical: 10,
       },
-    
+    banner:{
+        width: Dimensions.get('window').width - 50,
+        height: 100,
+        borderRadius: 15,
+      },
     searchBox:{
         flexDirection: 'row',  
         borderWidth:1,

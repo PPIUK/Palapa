@@ -34,6 +34,7 @@ export default function Visa({ navigation , route}) {
 
         {visa.map(({title, StudentVisa, VisitorVisa, DependentVisa, GraduateVisa}, index) =>{
           return (
+            
             <TouchableOpacity 
               key={title} 
               onPress={() =>{
@@ -42,23 +43,50 @@ export default function Visa({ navigation , route}) {
               }} 
               style={styles.cardContainer}
               >
-                <View style={styles.card}>
-                  <Text style={styles.heading}>{title}</Text>
-                  {index === currentIndex
-                  ? <AntDesign name='right' size={15} style={{padding : 15, transform: [{ rotate: '90deg' }]}} />
-                  : <AntDesign name='right' size={15} style={{padding : 15}}/>
-                  }
+                {index === currentIndex
+                ? 
+                <View style={{backgroundColor:'#D1E4FF', borderRadius:10}}>
+                  <View style={styles.card}>
+                    <Text style={styles.heading}>{title}</Text>
+                    {index === currentIndex
+                    ? <AntDesign name='right' size={15} style={{padding : 15, transform: [{ rotate: '90deg' }]}} />
+                    : <AntDesign name='right' size={15} style={{padding : 15}}/>
+                    }
+                  </View>
+                  {index === currentIndex && (
+                  <View style={styles.desc}>
+                      <Text>
+                        {jenisVisa === 'Student Visa'? StudentVisa
+                        :jenisVisa === 'Visitor Visa'? VisitorVisa
+                        :jenisVisa === 'Dependent Visa'? DependentVisa
+                        :GraduateVisa}
+                      </Text>
+                  </View>
+                  )}
                 </View>
-                {index === currentIndex && (
-                <View style={styles.desc}>
-                    <Text>
-                      {jenisVisa === 'Student Visa'? StudentVisa
-                      :jenisVisa === 'Visitor Visa'? VisitorVisa
-                      :jenisVisa === 'Dependent Visa'? DependentVisa
-                      :GraduateVisa}
-                    </Text>
+
+                :
+
+                <View>
+                  <View style={styles.card}>
+                    <Text style={styles.heading}>{title}</Text>
+                    {index === currentIndex
+                    ? <AntDesign name='right' size={15} style={{padding : 15, transform: [{ rotate: '90deg' }]}} />
+                    : <AntDesign name='right' size={15} style={{padding : 15}}/>
+                    }
+                  </View>
+                  {index === currentIndex && (
+                  <View style={styles.desc}>
+                      <Text>
+                        {jenisVisa === 'Student Visa'? StudentVisa
+                        :jenisVisa === 'Visitor Visa'? VisitorVisa
+                        :jenisVisa === 'Dependent Visa'? DependentVisa
+                        :GraduateVisa}
+                      </Text>
+                  </View>
+                  )}
                 </View>
-                )}
+            }
             </TouchableOpacity>
             
           );
@@ -81,21 +109,26 @@ export default function Visa({ navigation , route}) {
       fontSize: 25,
       fontWeight: 'bold',
       alignSelf: 'flex-start',
+      
     },
     cardContainer: {
-      margin : 5,
-      borderWidth : 1,
-      borderColor : 'black',
+      margin : 10,
+      borderRadius:10,
+      borderWidth: 1,
+      borderColor : '#004380',
       width: Dimensions.get('window').width - 50,
+  
     },
     card: {
-      flexDirection: 'row'
+      flexDirection: 'row',
+      
     },
     heading: {
       flex :1,
       padding : 10,
       fontSize : 15,
-      fontWeight : '500',
+      fontWeight : 'bold',
+      alignItems : 'center'
     },
     desc:{
       padding : 15,
