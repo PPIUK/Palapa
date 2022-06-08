@@ -8,11 +8,15 @@ import {ImigrasiStack, RestoranStack, EventsStack} from './Stack';
 import KontakScreen from '../screens/Kontak/KontakScreen';
 
 import { createDrawerNavigator } from '@react-navigation/drawer';
+
+// Icons
+import { MaterialIcons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
-
-
+import { FontAwesome } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 
 const Drawer = createDrawerNavigator();
 
@@ -38,10 +42,38 @@ export function MainDrawer(){
             color={focused ? "#e91e63" : "black"} 
         />
         :
+        drawer.iconType==='Ionicons' ?
+        <Ionicons 
+            name={drawer.iconName}
+            size={24} 
+            color={focused ? "#e91e63" : "black"} 
+        />
+        :
+        drawer.iconType==='Ant' ?
+        <AntDesign 
+            name={drawer.iconName}
+            size={24} 
+            color={focused ? "#e91e63" : "black"} 
+        />
+        :
         drawer.iconType==='Feather' ?
         <Feather 
             name={drawer.iconName}
             size={24} 
+            color={focused ? "#e91e63" : "black"} 
+        />
+        :
+        drawer.iconType==='MaterialIcons' ?
+        <MaterialIcons 
+            name={drawer.iconName}
+            size={24} 
+            color={focused ? "#e91e63" : "black"} 
+        />
+        :
+        drawer.iconType==='FontAwesome' ?
+        <FontAwesome 
+            name={drawer.iconName}
+            size={20} 
             color={focused ? "#e91e63" : "black"} 
         />
         :
@@ -57,9 +89,9 @@ export function MainDrawer(){
             : drawer.name==='Keberangkatan' ? Keberangkatan 
             : drawer.name==='Kepulangan' ? Kepulangan
             : drawer.name==='Imigrasi' ? ImigrasiStack
-            : drawer.name==='Restoran Indonesia' ? RestoranStack
             : drawer.name==='News' ? NewsScreen
             : drawer.name==='Events' ? EventsStack
+            : drawer.name==='Restoran Indonesia' ? RestoranStack
             : drawer.name==='Kontak' ? KontakScreen
                 : NoScreen
         }

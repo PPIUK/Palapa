@@ -15,16 +15,8 @@ export default function HomeScreen({ navigation }) {
 
     <SafeAreaView>
       <View style={styles.container}>
-       <TouchableOpacity
-          style={styles.Button}
-          activeOpacity={0.5}
-          onPress={() => navigation.navigate('News', {uri: '/'})}> 
-          <Text style={styles.buttonTextStyle}>
-            News
-          </Text>
-          <Image style={styles.buttonImageIconStyle} />
-          
-        </TouchableOpacity>
+
+        {/* Keberangkatan */}
         <TouchableOpacity
           style={styles.Button}
           activeOpacity={0.5}
@@ -33,8 +25,9 @@ export default function HomeScreen({ navigation }) {
             Checklist Keberangkatan ke UK
           </Text>
           <Image style={styles.buttonImageIconStyle} source={require('../assets/kepulangan.png')} />
-          
         </TouchableOpacity>
+
+        {/* Kepulangan */}
         <TouchableOpacity
           style={styles.Button}
           activeOpacity={0.5}
@@ -42,29 +35,31 @@ export default function HomeScreen({ navigation }) {
           <Text style={styles.buttonTextStyle}>
             Checklist Kepulangan ke Indonesia
           </Text>
-          <Image style={styles.buttonImageIconStyle} source={require('../assets/kepulangan.png')} />
-          
+          <Image style={styles.buttonImageIconStyle} source={require('../assets/kepulangan.png')} />          
         </TouchableOpacity>        
-        <TouchableOpacity
-          style={styles.Button}
+
+        {/* Imigrasi */}
+        <TouchableOpacity          style={styles.Button}
           activeOpacity={0.5}
           onPress={() => navigation.navigate('Imigrasi')}> 
           <Text style={styles.buttonTextStyle}>
           Info terkait Imigrasi
           </Text>
           <Image style={styles.buttonImageIconStyle}  />
-          
-        </TouchableOpacity>              
-        <TouchableOpacity
+        </TouchableOpacity>      
+
+        {/* News */}
+       <TouchableOpacity
           style={styles.Button}
           activeOpacity={0.5}
-          onPress={() => navigation.navigate('Restoran Indonesia')}> 
+          onPress={() => navigation.navigate('News', {uri: '/berita/'})}> 
           <Text style={styles.buttonTextStyle}>
-          Daftar Restoran & Catering Indonesia di UK
+            News
           </Text>
-          <Image style={styles.buttonImageIconStyle} source={require('../assets/restoran.png')} />
-          
-        </TouchableOpacity>    
+          <Image style={styles.buttonImageIconStyle} />
+        </TouchableOpacity>       
+
+        {/* Events */}
         <TouchableOpacity
           style={styles.Button}
           activeOpacity={0.5}
@@ -73,8 +68,20 @@ export default function HomeScreen({ navigation }) {
           Events
           </Text>
           <Image style={styles.buttonImageIconStyle}  />
-          
-        </TouchableOpacity>                 
+        </TouchableOpacity>      
+
+        {/* Restoran */}
+        <TouchableOpacity
+          style={styles.Button}
+          activeOpacity={0.5}
+          onPress={() => navigation.navigate('Restoran Indonesia')}> 
+          <Text style={styles.buttonTextStyle}>
+          Daftar Restoran & Catering Indonesia di UK
+          </Text>
+          <Image style={styles.buttonImageIconStyle} source={require('../assets/restoran.png')} />
+        </TouchableOpacity>                
+
+        {/* Kontak */}
         <TouchableOpacity
           style={styles.Button}
           activeOpacity={0.5}
@@ -83,8 +90,8 @@ export default function HomeScreen({ navigation }) {
             Kontak
           </Text>
           <Image style={styles.buttonImageIconStyle}  />
-          
         </TouchableOpacity>                
+
       </View>
     </SafeAreaView>
     </ScrollView>
@@ -96,7 +103,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-start',
-    paddingTop: Constants.statusBarHeight,
+    // paddingTop: Constants.statusBarHeight,
+    paddingTop: 20,
     backgroundColor: '#ffffff',
     padding: 8,
   },

@@ -2,41 +2,41 @@ export default [
     {
         name:'PALAPA',
         iconType:'Material',
-        iconName:'face-profile'
+        iconName:'home'
     },
     {
         name:'Keberangkatan',
-        iconType:'Material',
-        iconName:'bookmark-check-outline'
+        iconType:'MaterialIcons',
+        iconName:'flight-takeoff'
     },
     {
         name:'Kepulangan',
-        iconType:'Material',
-        iconName:'bookmark-check-outline'
+        iconType:'MaterialIcons',
+        iconName:'flight-land'
     },
     {
         name:'Imigrasi',
         iconType:'FontAwesome5',
-        iconName:'user-friends'
+        iconName:'passport'
     },
     {
         name:'News',
-        iconType:'Feather',
-        iconName:'settings'
-    },
-    {
-        name:'Restoran Indonesia',
-        iconType:'FontAwesome5',
-        iconName:'user-friends'
+        iconType:'FontAwesome',
+        iconName:'newspaper-o'
     },
     {
         name:'Events',
-        iconType:'FontAwesome5',
-        iconName:'user-friends'
+        iconType:'MaterialIcons',
+        iconName:'event'
+    },
+    {
+        name:'Restoran Indonesia',
+        iconType:'Ionicons',
+        iconName:'restaurant-outline'
     },
     {
         name:'Kontak',
-        iconType:'FontAwesome5',
-        iconName:'user-friends'
+        iconType:'Ant',
+        iconName:'contacts'
     },
  ]
