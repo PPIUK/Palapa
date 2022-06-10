@@ -1,38 +1,26 @@
 [
   {
     "title" : "Passport",
-    "desc" : "ini desc pertama"
+    "desc" : "Paspor adalah dokumen resmi yang dikeluarkan oleh pejabat yang berwenang dari suatu negara yang memuat identitas pemegangnya dan berlaku untuk melakukan perjalanan antar negara"
   },
   {
-    "title" : "Visa dan BRP",
-    "desc" : "ini desc kedua"
+    "title" : "Visa",
+    "desc" : "Visa adalah suatu dokumen yang menjadi alat bukti diijinkannya seseorang untuk memasuki suatu negara."
   },
   {
-      "title" : "Confirmation of Acceptance for studies (CAS)",
-      "desc" : "ini desc ketiga"
+    "title" : "Biometric Residence Permit (BRP) - Jika ada",
+    "desc" : "Biometric Residence Permit (BRP)"
   },
   {
-      "title" : "Tuberculosis Detection Medical Certificate",
-      "desc" : "ini desc keempat"
+    "title" : "Passenger Locator Form",
+    "desc" : "Passenger Locator Form"
   },
   {
-      "title" : "English Language Certificate",
-      "desc" : "ini desc kelima"
+    "title" : "Covid Test Result in English",
+    "desc" : "Hasil PCR covid test yang dalam bahasa inggris"
   },
   {
-    "title" : "Personal Documents",
-    "desc" : "ini desc kelima"
-  },
-  {
-    "title" : "kepulangan",
-    "desc" : "description"
-  },
-  {
-    "title" : "kepulangan1",
-    "desc" : "description"
-  },
-  {
-    "title" : "Kepulangan2",
-    "desc" : "description"
+    "title" : "Vaccination Certificate",
+    "desc" : "Sertifikat vaksin"
   }
 ]
