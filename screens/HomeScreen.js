@@ -15,8 +15,16 @@ export default function HomeScreen({ navigation }) {
 
     <SafeAreaView>
       <View style={styles.container}>
-
-        {/* Keberangkatan */}
+       <TouchableOpacity
+          style={styles.Button}
+          activeOpacity={0.5}
+          onPress={() => navigation.navigate('News', {uri: '/'})}> 
+          <Text style={styles.buttonTextStyle}>
+            News
+          </Text>
+          <Image style={styles.buttonImageIconStyle} source={require('../assets/news.png')}/>
+          
+        </TouchableOpacity>
         <TouchableOpacity
           style={styles.Button}
           activeOpacity={0.5}
@@ -24,10 +32,9 @@ export default function HomeScreen({ navigation }) {
           <Text style={styles.buttonTextStyle}>
             Checklist Keberangkatan ke UK
           </Text>
-          <Image style={styles.buttonImageIconStyle} source={require('../assets/kepulangan.png')} />
+          <Image style={styles.buttonImageIconStyle} source={require('../assets/planeUK.png')} />
+          
         </TouchableOpacity>
-
-        {/* Kepulangan */}
         <TouchableOpacity
           style={styles.Button}
           activeOpacity={0.5}
@@ -35,42 +42,19 @@ export default function HomeScreen({ navigation }) {
           <Text style={styles.buttonTextStyle}>
             Checklist Kepulangan ke Indonesia
           </Text>
-          <Image style={styles.buttonImageIconStyle} source={require('../assets/kepulangan.png')} />          
+          <Image style={styles.buttonImageIconStyle} source={require('../assets/planeid.png')} />
+          
         </TouchableOpacity>        
-
-        {/* Imigrasi */}
-        <TouchableOpacity          style={styles.Button}
+        <TouchableOpacity
+          style={styles.Button}
           activeOpacity={0.5}
           onPress={() => navigation.navigate('Imigrasi')}> 
           <Text style={styles.buttonTextStyle}>
           Info terkait Imigrasi
           </Text>
-          <Image style={styles.buttonImageIconStyle}  />
-        </TouchableOpacity>      
-
-        {/* News */}
-       <TouchableOpacity
-          style={styles.Button}
-          activeOpacity={0.5}
-          onPress={() => navigation.navigate('News', {uri: '/berita/'})}> 
-          <Text style={styles.buttonTextStyle}>
-            News
-          </Text>
-          <Image style={styles.buttonImageIconStyle} />
-        </TouchableOpacity>       
-
-        {/* Events */}
-        <TouchableOpacity
-          style={styles.Button}
-          activeOpacity={0.5}
-          onPress={() => navigation.navigate('Events')}> 
-          <Text style={styles.buttonTextStyle}>
-          Events
-          </Text>
-          <Image style={styles.buttonImageIconStyle}  />
-        </TouchableOpacity>      
-
-        {/* Restoran */}
+          <Image style={styles.buttonImageIconStyle} source={require('../assets/imigrasi.png')} />
+          
+        </TouchableOpacity>              
         <TouchableOpacity
           style={styles.Button}
           activeOpacity={0.5}
@@ -78,10 +62,19 @@ export default function HomeScreen({ navigation }) {
           <Text style={styles.buttonTextStyle}>
           Daftar Restoran & Catering Indonesia di UK
           </Text>
-          <Image style={styles.buttonImageIconStyle} source={require('../assets/restoran.png')} />
-        </TouchableOpacity>                
-
-        {/* Kontak */}
+          <Image style={styles.buttonImageIconStyle} source={require('../assets/food.png')} />
+          
+        </TouchableOpacity>    
+        <TouchableOpacity
+          style={styles.Button}
+          activeOpacity={0.5}
+          onPress={() => navigation.navigate('Events')}> 
+          <Text style={styles.buttonTextStyle}>
+          Events
+          </Text>
+          <Image style={styles.buttonImageIconStyle} source={require('../assets/event.png')} />
+          
+        </TouchableOpacity>                 
         <TouchableOpacity
           style={styles.Button}
           activeOpacity={0.5}
@@ -89,9 +82,9 @@ export default function HomeScreen({ navigation }) {
           <Text style={styles.buttonTextStyle}>
             Kontak
           </Text>
-          <Image style={styles.buttonImageIconStyle}  />
+          <Image style={styles.buttonImageIconStyle} source={require('../assets/contact.png')} />
+          
         </TouchableOpacity>                
-
       </View>
     </SafeAreaView>
     </ScrollView>
@@ -103,8 +96,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-start',
-    // paddingTop: Constants.statusBarHeight,
-    paddingTop: 20,
+    paddingTop: Constants.statusBarHeight,
     backgroundColor: '#ffffff',
     padding: 8,
   },
@@ -134,6 +126,10 @@ const styles = StyleSheet.create({
     
   },
   buttonImageIconStyle: {
+    padding: 10,
+    margin: 5,
+    height: 50,
+    width: 50,    
     alignSelf: 'flex-end',
     resizeMode:'stretch',
   },
