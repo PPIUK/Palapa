@@ -48,7 +48,7 @@ export default function Kepulangan({navigation}) {
     },[]);
 
     
-  const progress = checkedState.filter(value => value === true).length / checkedState.length;
+  const progress = checkedState.filter(value => value === true).length / kepulangancheck.length;
 
     return (
       <Transitioning.View 
@@ -63,7 +63,7 @@ export default function Kepulangan({navigation}) {
         </Text>
         <Text style={styles.subtitle}>
           You have completed {}   
-          <Text style={{color:'red'}}>{checkedState.filter(value => value === true).length} out of {checkedState.length}</Text>
+          <Text style={{color:'red'}}>{checkedState.filter(value => value === true).length} out of {kepulangancheck.length}</Text>
            {} of your document
         </Text>
         
