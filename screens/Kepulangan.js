@@ -32,6 +32,7 @@ export default function Kepulangan({navigation}) {
     };
 
   const save = async (updatedCheckedState) =>{
+      AsyncStorage.clear();
       await AsyncStorage.setItem("kepulangan", JSON.stringify(updatedCheckedState));
     }
 

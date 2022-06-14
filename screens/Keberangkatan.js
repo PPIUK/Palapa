@@ -32,6 +32,7 @@ export default function Keberangkatan({navigation}) {
     };
 
   const save = async (updatedCheckedState) =>{
+      AsyncStorage.clear();
       await AsyncStorage.setItem("keberangkatan", JSON.stringify(updatedCheckedState));
     }
 

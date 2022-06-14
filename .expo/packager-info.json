@@ -3,8 +3,8 @@
   "expoServerPort": 19000,
   "packagerPort": 19000,
   "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "expoServerNgrokUrl": "https://bt-u3e.evanrussel.github.exp.direct",
+  "packagerNgrokUrl": "https://bt-u3e.evanrussel.github.exp.direct",
+  "ngrokPid": 7680,
   "webpackServerPort": null
 }
