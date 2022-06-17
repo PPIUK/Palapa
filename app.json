@@ -6,7 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
-      "image": "https://raw.githubusercontent.com/PPIUK/Palapa/main/assets/PPIUK.png",
+      "image": "https://raw.githubusercontent.com/PPIUK/Palapa/main/assets/PPIUK3.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
