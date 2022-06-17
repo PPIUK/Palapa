@@ -40,7 +40,7 @@ export function NewsCarousel({ navigation }) {
               if(loading) {
                 return (
                   <View style={styles.cardStyle}>
-                    <Text style={{fontSize: 20, fontStyle: 'italic'}}>Loading...</Text>
+                    <Text></Text>
                   </View>
                 );
               }

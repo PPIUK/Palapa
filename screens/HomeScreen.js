@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SafeAreaView, TouchableOpacity, Button, Text, View, Image, StyleSheet, Dimensions } from 'react-native';
+import { SafeAreaView, TouchableOpacity, Text, View, Image, StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
 import { CustomHeader } from '../components/CustomHeader';
 import { ScrollView } from 'react-native-gesture-handler';
