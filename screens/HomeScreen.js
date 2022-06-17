@@ -100,21 +100,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     padding: 8,
   },
-  paragraph: {
-    margin: 24,
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  header: {
-    margin: 12,
-    fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  }, 
-
   Button: {
-    
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#004380',
@@ -122,8 +108,7 @@ const styles = StyleSheet.create({
     height: 60,
     borderRadius: 10,
     margin: 10,
-    padding: 0,
-    
+    padding: 0, 
   },
   buttonImageIconStyle: {
     padding: 10,
@@ -140,11 +125,6 @@ const styles = StyleSheet.create({
     fontWeight : 'bold',
     fontSize: 15,
     marginHorizontal:5,
-  },
-  buttonIconSeparatorStyle: {
-    backgroundColor: '#fff',
-    width: 1,
-    height: 40,
   }
 });
 

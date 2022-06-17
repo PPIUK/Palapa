@@ -109,7 +109,6 @@ export default function Visa({ navigation , route}) {
       fontSize: 25,
       fontWeight: 'bold',
       alignSelf: 'flex-start',
-      
     },
     cardContainer: {
       margin : 10,
@@ -117,11 +116,9 @@ export default function Visa({ navigation , route}) {
       borderWidth: 1,
       borderColor : '#004380',
       width: Dimensions.get('window').width - 50,
-  
     },
     card: {
-      flexDirection: 'row',
-      
+      flexDirection: 'row',  
     },
     heading: {
       flex :1,

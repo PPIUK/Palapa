@@ -100,22 +100,6 @@ export default function Restoran({ navigation }) {
         alignSelf: 'flex-start',
         marginVertical: 10,
       },
-    
-    searchBox:{
-        flexDirection: 'row',  
-        borderWidth:1,
-        borderColor: '#004380', 
-        borderRadius: 15, 
-        marginVertical: 10,
-        alignSelf:'center'
-    },
-    tab: {
-        flexDirection:'row',
-        backgroundColor: '#004380',
-        padding:15,
-        margin:10,
-        width:'110%',
-      },
     cardContainer: {
       margin : 5,
       borderWidth : 1,

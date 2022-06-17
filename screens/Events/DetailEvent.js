@@ -88,12 +88,6 @@ export default function Restoran({ navigation, route }) {
       marginVertical:10,
       alignSelf: 'center',
     },
-    subtitle: {
-        fontSize: 25,
-        fontWeight: 'bold',
-        alignSelf: 'flex-start',
-        marginVertical: 10,
-      },
     desc:{
         flexDirection: 'row',
         flex : 1,
