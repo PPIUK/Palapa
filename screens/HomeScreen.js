@@ -52,7 +52,7 @@ export default function HomeScreen({ navigation }) {
           <Text style={styles.buttonTextStyle}>
           Info terkait Imigrasi
           </Text>
-          <Image style={styles.buttonImageIconStyle} source={require('../assets/imigrasi.jpg')} />
+          <Image style={styles.buttonImageIconStyle} source={require('../assets/imigrasi.png')} />
           
         </TouchableOpacity>              
         <TouchableOpacity
