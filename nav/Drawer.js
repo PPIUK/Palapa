@@ -7,8 +7,8 @@ import NewsScreen from '../screens/News/NewsScreen';
 import {ImigrasiStack, RestoranStack, EventsStack} from './Stack';
 import KontakScreen from '../screens/Kontak/KontakScreen';
 
-import { createDrawerNavigator } from '@react-navigation/drawer';
-
+import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
+import {Text, View, Dimensions} from 'react-native';
 // Icons
 import { MaterialIcons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -20,6 +20,22 @@ import { AntDesign } from '@expo/vector-icons';
 
 const Drawer = createDrawerNavigator();
 
+const CustomDrawer = props =>{
+    return(
+        <DrawerContentScrollView {...props}>
+            <DrawerItemList {...props}  contentContainerStyle={{justifyContent: 'space-between', flex: 1}}/>
+            <View style={{margin:15, marginTop:Dimensions.get('window').height/3}}>
+            <Text style={{color:'grey', fontWeight:'bold'}}>
+                made by
+            </Text>
+            <Text style={{color:'grey'}}>
+                Miftah, Isa, Evan, Frenciel, Sarah, Fawnia, Shania, Edrik
+            </Text>
+            </View>
+            
+        </DrawerContentScrollView>
+    )
+}
 export function MainDrawer(){
     return(
     <Drawer.Navigator 
@@ -28,7 +44,9 @@ export function MainDrawer(){
     screenOptions={{
         activeTintColor: '#e91e63',
         itemStyle: { marginVertical: 10 },
-    }}>
+    }}
+    drawerContent={(props) => <CustomDrawer  {...props}/>}>
+        
     {
         DrawerItems.map(drawer=><Drawer.Screen 
         key={drawer.name}
@@ -97,8 +115,9 @@ export function MainDrawer(){
         }
         
     />)
+ 
         }
-        
+
     </Drawer.Navigator>
     )
 }
