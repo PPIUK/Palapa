@@ -4,7 +4,7 @@
     "slug": "snack-f100b109-e5bc-4e81-b020-94bd9fb33be9",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logo_kotak.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -21,9 +21,18 @@
     },
     "android": {
       "adaptiveIcon": {
+<<<<<<< Updated upstream
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       }
+=======
+        "foregroundImage": "./assets/logo_kotak.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.PPIUK.PALAPA",
+      "versionCode": 3,
+      "permissions": []
+>>>>>>> Stashed changes
     },
     "web": {
       "favicon": "./assets/favicon.png"
