@@ -4,7 +4,7 @@ import { Transition, Transitioning} from 'react-native-reanimated';
 import { FontAwesome } from '@expo/vector-icons';
 import {CustomHeader} from '../../components/CustomHeader';
 import DropDownPicker from 'react-native-dropdown-picker';
-import restoran from '../data/restoran/';
+import restoran from '../../db/data/restoran/';
 
 import { Feather, AntDesign } from '@expo/vector-icons';
 

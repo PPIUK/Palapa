@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import { LinearProgress, CheckBox } from 'react-native-elements';
-import keberangkatanCheck from './data/keberangkatanCheck/';
+import keberangkatanCheck from '../db/data/keberangkatanCheck/';
 import {StyleSheet, Text, View, TouchableOpacity, ScrollView, Dimensions} from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { Transition, Transitioning} from 'react-native-reanimated';

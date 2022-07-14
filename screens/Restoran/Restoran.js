@@ -1,11 +1,12 @@
 import React, { useState, useEffect} from 'react';
-import {StyleSheet, Text, View, TouchableOpacity, ScrollView, Dimensions, Image} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity, ScrollView, Dimensions, Image, ActivityIndicator} from 'react-native';
 import { Transition, Transitioning} from 'react-native-reanimated';
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome, Entypo } from '@expo/vector-icons';
 import {CustomHeader} from '../../components/CustomHeader';
 import DropDownPicker from 'react-native-dropdown-picker';
-import restoran from '../data/restoran/';
-
+import restoran from '../../db/data/restoran/';
+import SearchBar from "./SearchBar";
+import List from "./List";
 
 const ppi = 
   restoran.map((item, index) => (
@@ -17,8 +18,14 @@ export default function Restoran({ navigation }) {
   const [value, setValue] = useState(0);
   const [items, setItems] = useState(ppi);
 
+  const [searchPhrase, setSearchPhrase] = useState("");
+  const [clicked, setClicked] = useState(false);
+  const [fakeData, setFakeData] = useState();
 
-  const ref = React.useRef();
+  useEffect(() => {
+    setFakeData(restoran);
+  }, []);
+
     return (
       <View style={styles.container}>
 
@@ -33,14 +40,13 @@ export default function Restoran({ navigation }) {
             Discover Indonesian cuisine all over the UK 
           </Text>
 
-          <TouchableOpacity  style={styles.searchBox}>
-              <Text style={{flex:1, padding:10}}>
-                  Ketik nama restoran / Katering / Makanan
-              </Text> 
-              <View  style={{backgroundColor:'#004380', padding:10,borderRadius:15}}>
-                <FontAwesome name="search" size={20} color="white"/>
-              </View>
-          </TouchableOpacity>
+          <SearchBar
+            searchPhrase={searchPhrase}
+            setSearchPhrase={setSearchPhrase}
+            clicked={clicked}
+            setClicked={setClicked}
+          />
+
 
           <Image style={styles.banner} source={require('../../assets/restoran.jpg')} />
 
@@ -72,6 +78,18 @@ export default function Restoran({ navigation }) {
             <Text style={{color: 'white'}}>Katering</Text>
           </TouchableOpacity>
         </View>
+
+        {!fakeData ? (
+            <ActivityIndicator size="large" />
+          ) : (
+            
+              <List
+                searchPhrase={searchPhrase}
+                data={fakeData}
+                setClicked={setClicked}
+              />
+            
+          )}
 
         <ScrollView>
           {restoran[value]["restoran"].map(({nama, tags},index)=>{
