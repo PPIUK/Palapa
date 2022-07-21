@@ -9,7 +9,7 @@ import Restoranmenu from '../screens/Restoran/Restoran';
 import DetailRestoran from '../screens/Restoran/DetailRestoran';
 
 //Events
-import Events from '../screens/Events/Events';
+import EventsMain from '../screens/Events/EventsMain';
 import DetailEvent from '../screens/Events/DetailEvent';
 
 const StackImigrasi = createNativeStackNavigator();

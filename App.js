@@ -24,7 +24,7 @@ export default function App() {
   );
 }
 
-// Splash Screen
+// Splash Screen Animation
 // Instruct SplashScreen not to hide yet, we want to do this manually
 SplashScreen.preventAutoHideAsync().catch(() => {
   /* reloading the app might trigger some race conditions, ignore them */

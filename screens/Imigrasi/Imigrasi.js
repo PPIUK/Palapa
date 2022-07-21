@@ -4,6 +4,7 @@ import {StyleSheet, Text, View, TouchableOpacity, ScrollView, Dimensions, Image}
 import { AntDesign } from '@expo/vector-icons';
 import { Transition, Transitioning} from 'react-native-reanimated';
 import {CustomHeader} from '../../components/CustomHeader';
+import dataAPI from '../../database/dataAPI';
 
 const transition = (
   <Transition.Together>
@@ -14,8 +15,40 @@ const transition = (
 );
 
 export default function Imigrasi({ navigation }) {
+  const [data, setData] = useState([]); // [] = init value
   const [currentIndex, setCurrentIndex] = React.useState(null);
   const ref = React.useRef();
+
+  useEffect( () => {getDataFromAPI()}, [] )
+
+  function getDataFromAPI() {
+    dataAPI.get('app/application-0-jjbbw/endpoint/HTTP/get_imigrasi')
+    .then(function(response) {
+      setData(response.data);
+    }).catch(function(error) {
+      console.log(error);
+    })
+  }
+
+  if (!data) {
+    return (
+      <Transitioning.View 
+        ref={ref}
+        transition = {transition}
+        style={styles.container}
+      >
+        <CustomHeader isHome={true} navigation={navigation}/>
+        <Text style={styles.title}>
+          IMIGRASI
+        </Text>
+        <Image style={styles.banner} source={require('../../assets/visa.jpg')} />
+        <Text style={styles.title}>
+          Jenis Visa UK
+        </Text>
+      </Transitioning.View>
+    )
+  }
+
     return (
       
       <Transitioning.View 
@@ -36,7 +69,7 @@ export default function Imigrasi({ navigation }) {
         <ScrollView>
       
 
-        {imigrasi.map(({title, desc}, index) =>{
+        {data.map(({_id, title, desc}, index) =>{
           return (
             
             <TouchableOpacity 

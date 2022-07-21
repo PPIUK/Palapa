@@ -26,7 +26,7 @@ const CustomDrawer = props =>{
             <DrawerItemList {...props}  contentContainerStyle={{justifyContent: 'space-between', flex: 1}}/>
             <View style={{margin:15, marginTop:Dimensions.get('window').height/3}}>
             <Text style={{color:'grey', fontWeight:'bold'}}>
-                made by
+                Made by
             </Text>
             <Text style={{color:'grey'}}>
                 Miftah, Isa, Evan, Frenciel, Sarah, Fawnia, Shania, Edrik
