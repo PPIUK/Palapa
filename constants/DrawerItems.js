@@ -1,6 +1,6 @@
 export default [
     {
-        name:'PALAPA',
+        name:'PPIUK',
         iconType:'Material',
         iconName:'home'
     },

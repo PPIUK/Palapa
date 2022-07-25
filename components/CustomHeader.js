@@ -20,10 +20,10 @@ export function CustomHeader({isHome, navigation}){
           </View>
   
           <View style={{flex: 1.5, justifyContent:'center'}}>
-            <Text style={{textAlign: 'center', color:'blue', fontWeight:'bold', fontSize:25}}> PALAPA </Text>
+            <Text style={{textAlign: 'center', color:'blue', fontWeight:'bold', fontSize:25}}> PPI UK </Text>
           </View>
           <View style={{flex: 1, justifyContent: 'center', alignItems:'flex-end'}}>
-            <TouchableOpacity onPress={() => navigation.navigate('PALAPA')}>
+            <TouchableOpacity onPress={() => navigation.navigate('PPIUK')}>
               <Entypo name="home" size={30} color="black"/>
             </TouchableOpacity>
           </View>

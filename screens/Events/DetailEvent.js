@@ -1,68 +1,64 @@
-import React, { useState, useEffect} from 'react';
-import {StyleSheet, Text, View, TouchableOpacity, ScrollView, Dimensions, Image} from 'react-native';
-import { Transition, Transitioning} from 'react-native-reanimated';
-import { FontAwesome } from '@expo/vector-icons';
+import React from 'react';
+import {StyleSheet, Text, View, TouchableOpacity, ScrollView, Dimensions, Image, Linking} from 'react-native';
 import {CustomHeader} from '../../components/CustomHeader';
-import DropDownPicker from 'react-native-dropdown-picker';
-import events from '../data/events/';
 
 import { Feather, AntDesign } from '@expo/vector-icons';
 
 
-const ppi = 
-  events.map((item, index) => (
-    {label: item.title, value: index}
-));
+export default function DetailEvents({ navigation, route }) {
 
-export default function Restoran({ navigation, route }) {
-  const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(0);
-  const [items, setItems] = useState(ppi);
+  //get data from parent
+  const {event} = route.params;
 
-  const {ppiIndex, restoIndex} = route.params;
-  const detail = events[ppiIndex]["events"][restoIndex];
-
-  const ref = React.useRef();
     return (
       <View style={styles.container}>
 
         <CustomHeader isHome={false} navigation={navigation}/>
-        <ScrollView>
+         <ScrollView>
 
         <Image style={styles.banner} source={require('../../assets/events.jpg')} />
 
           <Text style={styles.title}>
-            {detail.nama}
+            {event.name}
+          </Text>
+          <Text style={styles.subtitle}>
+            by {event.penyelenggara}
           </Text>
 
         <View style={styles.cardContainer}>
           <View style={styles.desc}>
           <Feather name="calendar" size={24} color="#004380" />
-              <Text style={{marginHorizontal : 10}}>{detail.datetime}</Text>
+              <Text style={{marginHorizontal : 10}}>{event.date.slice(0,10)} {event.date.slice(30,)}</Text>
+          </View>
+          <View style={styles.desc}>
+          <Feather name="clock" size={24} color="#004380" />
+              <Text style={{marginHorizontal : 10}}>{event.date.slice(11,29)}</Text>
           </View>
           <View style={styles.desc}>
               <Feather name="map-pin" size={24} color='#004380' />
-              <Text style={{marginHorizontal : 10}}>{detail.alamat}</Text>
+              <Text style={{marginHorizontal : 10}}>{event.city}</Text>
           </View>
           <View style={styles.desc}>
             <Feather name="tag" size={24} color='#004380' />
-              <Text style={{marginHorizontal : 10}}>{detail.price}</Text>
+              <Text style={{marginHorizontal : 10}}>GBP {event.price}</Text>
           </View>
           <View style={styles.desc}>
           <Feather name="bookmark" size={24} color="#004380" />
-              <Text style={{marginHorizontal : 10}}>{detail.rsvp}</Text>
+              <Text style={{marginHorizontal : 10}} onPress={() => Linking.openURL(event.link)}>{event.link}</Text>
           </View>
 
         </View>
       <Text style={{margin:20, fontSize:22,}}>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ultricies orci id mattis faucibus. Donec aliquet porta sodales. Praesent a dictum risus, rutrum lobortis lacus. Donec tempor nulla ligula, vitae blandit mauris efficitur sed. Ut sodales leo quis ipsum facilisis eleifend. Nullam quis sapien et ex fermentum pretium. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Ut ac magna at magna venenatis congue vulputate a lectus. Curabitur quis massa sit amet augue scelerisque scelerisque. Fusce aliquam,
+      {event.desc}
       </Text>
-      <Text style={{margin:20}}>
-        RSVP : {detail.rsvp}
+      <TouchableOpacity style={styles.button} onPress={() => Linking.openURL(event.link)}>
+        <Text style={{color:'white', fontWeight:'bold'}}>
+        Click here for RSVP
       </Text>
+      </TouchableOpacity>
 
       
-        </ScrollView>
+        </ScrollView> 
       </View>
     ); 
   }
@@ -79,7 +75,13 @@ export default function Restoran({ navigation, route }) {
       alignSelf: 'flex-start',
       color: 'black',
       margin: 15,
-    
+    },
+    subtitle: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      alignSelf: 'flex-start',
+      color: 'black',
+      marginHorizontal: 15,
     },
     banner:{
       width: Dimensions.get('window').width - 50,
@@ -104,4 +106,13 @@ export default function Restoran({ navigation, route }) {
       borderRadius:7, 
       marginVertical: 10,
     },
+    button: {
+      backgroundColor:'#004380',
+      color: 'white',
+      alignSelf: 'center',
+      padding: 15,
+      borderRadius:15,
+      fontWeight: 'bold',
+      margin:15,
+    }
   });

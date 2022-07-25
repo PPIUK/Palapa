@@ -40,7 +40,7 @@ export function MainDrawer(){
     return(
     <Drawer.Navigator 
     drawerType="front"
-    initialRouteName="PALAPA"
+    initialRouteName="PPIUK"
     screenOptions={{
         activeTintColor: '#e91e63',
         itemStyle: { marginVertical: 10 },
@@ -103,7 +103,7 @@ export function MainDrawer(){
         headerShown : false
         }} 
         component={
-            drawer.name==='PALAPA' ? HomeScreen 
+            drawer.name==='PPIUK' ? HomeScreen 
             : drawer.name==='Keberangkatan' ? Keberangkatan 
             : drawer.name==='Kepulangan' ? Kepulangan
             : drawer.name==='Imigrasi' ? ImigrasiStack

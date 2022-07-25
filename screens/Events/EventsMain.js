@@ -31,6 +31,7 @@ export default function EventsMain({ navigation }) {
     return null
   }
 
+  // take all unique ppi that has event (the las event every ppi)
   const uniqueppi = [...new Map(data.map(item =>
     [item['city'], item])).values()];
     
@@ -77,20 +78,23 @@ export default function EventsMain({ navigation }) {
           </View>
         </View>
        
-        <ScrollView>
-          {eventslist(value).map(({_id, name, date, penyelenggara},index)=>{
+        <ScrollView style={{marginVertical:15}}>
+          {eventslist(value).map(({_id, name, penyelenggara, date},index)=>{
             return(
               <TouchableOpacity 
                 key={index} 
                 onPress={() =>{
-                  navigation.navigate('DetailEvent', {eventid: _id})
+                  navigation.navigate('DetailEvent', {event: eventslist(value)[index]})
                 }} 
                 style={styles.cardContainer}
               >
-                  
-                <View style={{flexDirection: 'row'}}>
-                  <View style={{padding:25,margin : 5,borderWidth:1, borderColor:'#004380', borderRadius:7,}}/>
-                    <View>
+                
+                <View style={{flexDirection: 'row',flex:1}}>
+
+                    <Image style={{resizeMode:'contain',height:70, width:70,margin : 5}} source={require('../../assets/icon.png')} />
+      
+                    <View style={{}}>
+                      <Text style={styles.h2}>{date.slice(0,10)} {date.slice(30,)}</Text>
                       <Text style={styles.h1}>{name}</Text>
                       <Text style={styles.h2}>by {penyelenggara}</Text>
                     </View>
@@ -116,7 +120,6 @@ export default function EventsMain({ navigation }) {
       fontWeight: 'bold',
       alignSelf: 'flex-start',
       color: 'red',
-      margin: 15,
     },
     banner:{
       width: Dimensions.get('window').width - 50,
@@ -141,13 +144,13 @@ export default function EventsMain({ navigation }) {
     },
     h1: {
       flex :1,
-      padding : 5,
+      padding : 3,
       fontSize : 17,
       fontWeight : 'bold',
     },
     h2: {
       flex :1,
-      padding : 5,
+      padding : 3,
       fontSize : 15,
       fontWeight : '500',
     },

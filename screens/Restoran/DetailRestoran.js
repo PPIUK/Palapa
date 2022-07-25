@@ -9,35 +9,28 @@ import restoran from '../data/restoran/';
 import { Feather, AntDesign } from '@expo/vector-icons';
 
 
-const ppi = 
-  restoran.map((item, index) => (
-    {label: item.title, value: index}
-));
+export default function DetailRestoran({ navigation, route }) {
 
-export default function Restoran({ navigation, route }) {
-  const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(0);
-  const [items, setItems] = useState(ppi);
+  //get data from parent
+  const {resto} = route.params;
 
-  const {ppiIndex, restoIndex} = route.params;
-  const detail = restoran[ppiIndex]["restoran"][restoIndex];
-
-  const ref = React.useRef();
     return (
       <View style={styles.container}>
-
+        
         <CustomHeader isHome={false} navigation={navigation}/>
         <ScrollView>     
-        <Image style={styles.banner} source={require('../../assets/triplehotspicy.jpg')} />
+        <Image style={styles.banner} source={{
+          uri: resto.gambar_resto,
+        }} />
 
           <Text style={styles.title}>
-            {detail.nama}
+            {resto.name}
           </Text>
         
         <View style={styles.cardContainer}>
           <View style={styles.desc}>
               <Feather name="map-pin" size={24} color='#004380' />
-              <Text style={{marginHorizontal : 10}}>{detail.alamat}</Text>
+              <Text style={{marginHorizontal : 10}}>{resto.city}</Text>
           </View>
           <View style={styles.desc}>
             <Feather name="dollar-sign" size={24} color='#004380' />
@@ -45,15 +38,15 @@ export default function Restoran({ navigation, route }) {
           </View>
           <View style={styles.desc}>
             <Feather name="tag" size={24} color='#004380' />
-              <Text style={{marginHorizontal : 10}}>{detail.tags}</Text>
+              <Text style={{marginHorizontal : 10}}>{}</Text>
           </View>
           <View style={styles.desc}>
             <AntDesign name="phone" size={24} color='#004380' />
-              <Text style={{marginHorizontal : 10}}>{detail.telp}</Text>
+              <Text style={{marginHorizontal : 10}}>{resto.telp}</Text>
           </View>
           <View style={styles.desc}>
             <AntDesign name="clockcircleo" size={24} color='#004380' />
-              <Text style={{marginHorizontal : 10}}>{detail.jam}</Text>
+              <Text style={{marginHorizontal : 10}}>{resto.opening_time}</Text>
           </View>
         </View>
 
@@ -62,10 +55,11 @@ export default function Restoran({ navigation, route }) {
                 Menu
             </Text>
             <ScrollView horizontal={true}>
-              <Image style={styles.menu} source={require('../../assets/triplehotspicy.jpg')} />
-              <Image style={styles.menu} source={require('../../assets/triplehotspicy.jpg')} />
-              <Image style={styles.menu} source={require('../../assets/triplehotspicy.jpg')} />
-              <Image style={styles.menu} source={require('../../assets/triplehotspicy.jpg')} />
+              {resto.gambar_menu.split(", ").map((link, index)=>{
+                <Image style={styles.menu} source={{
+                  uri: link,
+                }} />
+            })}      
             </ScrollView>
         </View>
 

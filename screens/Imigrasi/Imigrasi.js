@@ -81,6 +81,7 @@ export default function Imigrasi({ navigation }) {
               
               style={styles.cardContainer}
               >
+                {/* {console.log(data[index])} */}
                 {index === currentIndex
                   ? 
                   <View style={{backgroundColor:'#D1E4FF', borderRadius:15}}>
@@ -97,7 +98,7 @@ export default function Imigrasi({ navigation }) {
                         <Text style={{flex : 1}}>{desc}</Text>
                         <TouchableOpacity 
                         style = {styles.detail}
-                        onPress={() => navigation.navigate('Visa', title)}>
+                        onPress={() => navigation.navigate('Visa', {visa: data[index]})}>
                           <Text style = {{color : 'white'}}>detail</Text>
                         </TouchableOpacity>
                       </View>
