@@ -11,6 +11,7 @@ import DetailRestoran from '../screens/Restoran/DetailRestoran';
 //Events
 import EventsMain from '../screens/Events/EventsMain';
 import DetailEvent from '../screens/Events/DetailEvent';
+import EventLink from '../screens/Events/EventLink';
 
 const StackImigrasi = createNativeStackNavigator();
 
@@ -41,6 +42,7 @@ export const EventsStack = () =>{
   <StackEvents.Navigator initialRouteName='Restoranmenu'>
     <StackEvents.Screen name="EventsMain" component={EventsMain} options={{headerShown: false}}/>
     <StackEvents.Screen name="DetailEvent" component={DetailEvent} options={{headerShown: false}}/>
+    <StackEvents.Screen name="EventLink" component={EventLink} options={{headerShown: false}}/>
   </StackEvents.Navigator>
   );
 }

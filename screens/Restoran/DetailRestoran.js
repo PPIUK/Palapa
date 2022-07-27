@@ -1,10 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, ScrollView, Dimensions, Image} from 'react-native';
-import { Transition, Transitioning} from 'react-native-reanimated';
-import { FontAwesome } from '@expo/vector-icons';
 import {CustomHeader} from '../../components/CustomHeader';
-import DropDownPicker from 'react-native-dropdown-picker';
-import restoran from '../data/restoran/';
+
 
 import { Feather, AntDesign } from '@expo/vector-icons';
 
@@ -13,14 +10,14 @@ export default function DetailRestoran({ navigation, route }) {
 
   //get data from parent
   const {resto} = route.params;
-
+  const banner = resto.gambar_resto.replace('open', 'uc');
     return (
       <View style={styles.container}>
         
         <CustomHeader isHome={false} navigation={navigation}/>
         <ScrollView>     
         <Image style={styles.banner} source={{
-          uri: resto.gambar_resto,
+          uri: banner,
         }} />
 
           <Text style={styles.title}>
@@ -57,7 +54,7 @@ export default function DetailRestoran({ navigation, route }) {
             <ScrollView horizontal={true}>
               {resto.gambar_menu.split(", ").map((link, index)=>{
                 <Image style={styles.menu} source={{
-                  uri: link,
+                  uri: link.replace('open', 'uc'),
                 }} />
             })}      
             </ScrollView>

@@ -1,7 +1,5 @@
 import React, { useState, useEffect} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, ScrollView, Dimensions, Image, Button, TextInput, Keyboard} from 'react-native';
-import { Transition, Transitioning} from 'react-native-reanimated';
-import { FontAwesome,  Feather, Entypo  } from '@expo/vector-icons';
 import {CustomHeader} from '../../components/CustomHeader';
 import DropDownPicker from 'react-native-dropdown-picker';
 import dataAPI from '../../database/dataAPI';
@@ -16,8 +14,7 @@ export default function RestoranMain({ navigation }) {
   const [value, setValue] = useState(0);
   const [items, setItems] = useState(ppi);
   const [data, setData] = useState([]); // [] = init value
-
-  const [search, setSearch] = useState('');
+  const [filteredData, setfilteredData] = useState([]);
   
 
   useEffect( () => {getDataFromAPI()}, [] )
@@ -26,6 +23,7 @@ export default function RestoranMain({ navigation }) {
     dataAPI.get('app/application-0-jjbbw/endpoint/HTTP/get_restoran_katering')
     .then(function(response) {
       setData(response.data);
+      setfilteredData(response.data);
     }).catch(function(error) {
       console.log(error);
     })
@@ -46,10 +44,19 @@ export default function RestoranMain({ navigation }) {
   // return all events with selected ppi
   function restolist (selected){
     if(selected == '0'){
-      return(data)
+      return(filteredData)
     }
     else{
-      return(data.filter(x => x.city === ppi[selected].label))
+      return(filteredData.filter(x => x.city === ppi[selected].label))
+    }
+  }
+
+  function filterList(Text){
+    if(Text !== ''){
+      setfilteredData(data.filter(x => x.name.includes(Text)));
+    } 
+    else{
+      setfilteredData(data)
     }
   }
     return (
@@ -78,7 +85,7 @@ export default function RestoranMain({ navigation }) {
         <SearchBar
           placeholder="Ketik nama restoran"
           //onPress={() => alert("onPress")}
-          onChangeText={(text) => console.log(text)}
+          onChangeText={(text) => filterList(text)}
           style={{borderWidth:2, borderColor:'#004380'}}
         />
         <Text></Text>

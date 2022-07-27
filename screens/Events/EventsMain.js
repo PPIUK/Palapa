@@ -1,7 +1,5 @@
 import React, { useState, useEffect} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, ScrollView, Dimensions, Image} from 'react-native';
-import { Transition, Transitioning} from 'react-native-reanimated';
-import { FontAwesome } from '@expo/vector-icons';
 import {CustomHeader} from '../../components/CustomHeader';
 import DropDownPicker from 'react-native-dropdown-picker';
 import dataAPI from '../../database/dataAPI';
@@ -31,8 +29,11 @@ export default function EventsMain({ navigation }) {
     return null
   }
 
+  // filter data that flag 1.0
+  var flagged = data.filter(x => x.flag == "1.0");
+
   // take all unique ppi that has event (the las event every ppi)
-  const uniqueppi = [...new Map(data.map(item =>
+  const uniqueppi = [...new Map(flagged.map(item =>
     [item['city'], item])).values()];
     
   uniqueppi.map((item, index) => ( 
@@ -42,10 +43,11 @@ export default function EventsMain({ navigation }) {
   // return all events with selected ppi
   function eventslist (selected){
     if(selected == '0'){
-      return(data)
+      console.log(flagged)
+      return(flagged)
     }
     else{
-      return(data.filter(x => x.city === ppi[selected].label))
+      return(flagged.filter(x => x.city === ppi[selected].label))
     }
   }
   

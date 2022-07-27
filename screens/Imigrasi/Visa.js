@@ -1,5 +1,4 @@
 import React, { useState, useEffect} from 'react';
-import visa from '../data/visa/';
 import {StyleSheet, Text, View, TouchableOpacity, ScrollView, Dimensions} from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { Transition, Transitioning} from 'react-native-reanimated';
