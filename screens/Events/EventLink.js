@@ -18,7 +18,6 @@ export default function EventLink({route, navigation}) {
       <View style={{flex:1, alignItems: 'center'}}>
          <CustomHeader isHome={false} navigation={navigation}/>
          <View style={{width: windowSize.width, height: windowSize.height-135}}>
-          {console.log(link)}
           <WebView source={{ uri: link }} />
         </View>
       </View>

@@ -36,7 +36,10 @@ export default function DetailEvents({ navigation, route }) {
           </View>
           <View style={styles.desc}>
               <Feather name="map-pin" size={24} color='#004380' />
-              <Text style={{marginHorizontal : 10}}>{event.city}</Text>
+              {event.offline_online === 'Online'?
+            <Text style={{marginHorizontal : 10}}>Online</Text>
+            :
+            <Text style={{marginHorizontal : 10}}>{event.alamat}</Text>}
           </View>
           <View style={styles.desc}>
             <Feather name="tag" size={24} color='#004380' />
@@ -47,9 +50,22 @@ export default function DetailEvents({ navigation, route }) {
             <Text style={styles.zoom}>ZOOM</Text>
             :
             <Text style={styles.zoom}>GMAPS</Text>}
-              <TouchableOpacity style={{marginHorizontal : 10}} onPress={() => navigation.navigate('EventLink', {link:event.alamat})}>
-                <Text>{event.alamat}</Text>
-              </TouchableOpacity>
+
+              {event.link.slice(0,4) !== 'http'?
+                <TouchableOpacity style={{marginHorizontal : 10}} onPress={() => 
+                  //navigation.navigate('EventLink', {link:event.link})
+                  Linking.openURL('http://'+event.link)
+                  }>
+                <Text style={{ color:'#004380', textDecorationLine: 'underline'}}>{event.link}</Text>
+                </TouchableOpacity>
+              :
+                <TouchableOpacity style={{marginHorizontal : 10}} onPress={() => 
+                  //navigation.navigate('EventLink', {link:event.link})
+                  Linking.openURL(event.link) 
+                  }>
+                <Text style={{ color:'#004380', textDecorationLine: 'underline'}}>{event.link}</Text>
+                </TouchableOpacity>
+              }
           </View>
 
         </View>

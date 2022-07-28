@@ -15,7 +15,6 @@ const transition = (
 export default function Visa({ navigation , route}) {
   const [currentIndex, setCurrentIndex] = React.useState(null);
   const {visa} = route.params;
-  console.log(visa)
   const ref = React.useRef();
     return (
       <Transitioning.View 

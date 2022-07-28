@@ -43,7 +43,6 @@ export default function EventsMain({ navigation }) {
   // return all events with selected ppi
   function eventslist (selected){
     if(selected == '0'){
-      console.log(flagged)
       return(flagged)
     }
     else{
