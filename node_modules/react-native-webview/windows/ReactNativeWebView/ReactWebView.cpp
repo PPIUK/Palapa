@@ -23,7 +23,11 @@ namespace winrt {
 namespace winrt::ReactNativeWebView::implementation {
 
     ReactWebView::ReactWebView(winrt::IReactContext const& reactContext) : m_reactContext(reactContext) {
+#ifdef CHAKRACORE_UWP
+        m_webView = winrt::WebView(winrt::WebViewExecutionMode::SeparateProcess);
+#else
         m_webView = winrt::WebView();
+#endif
         this->Content(m_webView);
         RegisterEvents();
     }
@@ -59,7 +63,7 @@ namespace winrt::ReactNativeWebView::implementation {
             });
     }
 
-    bool ReactWebView::Is17763OrHigher() {
+    bool Is17763OrHigher() {
       static std::optional<bool> hasUniversalAPIContract_v7;
 
       if (!hasUniversalAPIContract_v7.has_value()) {
