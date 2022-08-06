@@ -8,7 +8,7 @@ import { Animated, StyleSheet, View } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
 import { MainDrawer } from './nav/Drawer'
 
-// Main app function
+/* Main app function */
 export default function App() {
   return (
     // Calling animation on splash screen
@@ -23,8 +23,14 @@ export default function App() {
     </AnimatedAppLoader>
   );
 }
+/* */
 
-// Splash Screen Animation
+
+
+/* 
+Splash Screen Animation 
+*/
+
 // Instruct SplashScreen not to hide yet, we want to do this manually
 SplashScreen.preventAutoHideAsync().catch(() => {
   /* reloading the app might trigger some race conditions, ignore them */
@@ -112,3 +118,4 @@ function AnimatedSplashScreen({ children, image }) {
     </View>
   );
 }
+/* Splash Screen Animation */

@@ -1,3 +1,7 @@
+/* 
+Function using WebView library to return in-app-browser view of PPIUK wordpress news articles
+*/
+
 import * as React from 'react';
 import { View, Dimensions, Text } from 'react-native';
 import { WebView } from "react-native-webview";

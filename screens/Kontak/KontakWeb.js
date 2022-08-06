@@ -1,3 +1,7 @@
+/* 
+Function using WebView library to return in-app-browser view of PPIUK contacts from wordpress
+*/
+
 import * as React from 'react';
 import { View, Dimensions } from 'react-native';
 import { WebView } from "react-native-webview";

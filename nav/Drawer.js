@@ -1,3 +1,7 @@
+/* 
+Main drawer for navigations and navigation/side menu.
+*/
+
 import DrawerItems from '../constants/DrawerItems';
 import NoScreen from '../screens/NoScreen';
 import HomeScreen from '../screens/HomeScreen';

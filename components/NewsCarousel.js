@@ -1,3 +1,8 @@
+/* 
+GraphQL API function to fetch news articles from PPI UK Wordpress and mapped to 
+return a carousel using horizontal scroll view.
+*/
+
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Dimensions, Image } from 'react-native';
 import { Query } from 'react-apollo';
