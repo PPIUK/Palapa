@@ -1,3 +1,9 @@
+/*
+HomeScreen function - first screen you see when opening app 
+Returns custom header and news carousel 
+followed by buttons(touchable opacity) navigating to other screens
+*/
+
 import * as React from 'react';
 import { SafeAreaView, TouchableOpacity, Text, View, Image, StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
