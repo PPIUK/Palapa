@@ -1,3 +1,5 @@
+//Checklist Kepulangan
+
 import React, { useState, useEffect} from 'react';
 import { LinearProgress, CheckBox } from 'react-native-elements';
 import kepulangancheck from './data/kepulangancheck';
@@ -7,6 +9,7 @@ import { Transition, Transitioning} from 'react-native-reanimated';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {CustomHeader} from '../components/CustomHeader';
 
+//Transition config
 const transition = (
   <Transition.Together>
     <Transition.In type="fade" durationMs={200} />
@@ -20,8 +23,11 @@ export default function Kepulangan({navigation}) {
   const [checkedState, setCheckedState] = useState(
       new Array(kepulangancheck.length).fill(false)
     );
+
+  //Transition Reference
   const ref = React.useRef();
 
+  // Checkbox HandleOnChange, changeprogress value 
   const handleOnChange = (position) => {
       const updatedCheckedState = checkedState.map((item, index) =>
         index === position ? !item : item
@@ -31,11 +37,14 @@ export default function Kepulangan({navigation}) {
       save(updatedCheckedState);
     };
 
+  //Async Storage save
   const save = async (updatedCheckedState) =>{
       AsyncStorage.clear();
       await AsyncStorage.setItem("kepulangan", JSON.stringify(updatedCheckedState));
     }
 
+
+  //Async Storage load
   const load = async() =>{
       let jsonValue = await AsyncStorage.getItem("kepulangan");
 
@@ -44,11 +53,12 @@ export default function Kepulangan({navigation}) {
       }
     }
 
+  //Load from Async storage everytime screen open
   useEffect(() => {
       load();
     },[]);
 
-    
+  //progress const
   const progress = checkedState.filter(value => value === true).length / kepulangancheck.length;
 
     return (

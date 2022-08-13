@@ -1,4 +1,6 @@
-import React, { useState, useEffect} from 'react';
+//DetailRostoran Screen, child screen from RestoranMain showing the detail of the restaurant clicked
+
+import React from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, ScrollView, Dimensions, Image} from 'react-native';
 import {CustomHeader} from '../../components/CustomHeader';
 

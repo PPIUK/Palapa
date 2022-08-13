@@ -1,3 +1,8 @@
+/*
+EventLink function
+return the webview of passed link from parent
+*/
+
 import * as React from 'react';
 import { View, Dimensions } from "react-native";
 import {CustomHeader} from '../../components/CustomHeader';

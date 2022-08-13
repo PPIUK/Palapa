@@ -1,3 +1,5 @@
+// DetailEvent Screen, Child screen of EventsMain, Showing details of the Event clicked
+
 import React from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, ScrollView, Dimensions, Image, Linking} from 'react-native';
 import {CustomHeader} from '../../components/CustomHeader';

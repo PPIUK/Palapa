@@ -1,3 +1,5 @@
+//Checklist Keberangkatan Screen
+
 import React, { useState, useEffect} from 'react';
 import { LinearProgress, CheckBox } from 'react-native-elements';
 import keberangkatanCheck from './data/keberangkatanCheck/';
@@ -7,6 +9,7 @@ import { Transition, Transitioning} from 'react-native-reanimated';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {CustomHeader} from '../components/CustomHeader';
 
+//Transition config
 const transition = (
   <Transition.Together>
     <Transition.In type="fade" durationMs={200} />
@@ -20,8 +23,12 @@ export default function Keberangkatan({navigation}) {
   const [checkedState, setCheckedState] = useState(
       new Array(keberangkatanCheck.length).fill(false)
     );
+
+  //Transition Reference
   const ref = React.useRef();
 
+
+  // Checkbox HandleOnChange, changeprogress value 
   const handleOnChange = (position) => {
       const updatedCheckedState = checkedState.map((item, index) =>
         index === position ? !item : item
@@ -31,11 +38,14 @@ export default function Keberangkatan({navigation}) {
       save(updatedCheckedState);
     };
 
+
+  //Async Storage save
   const save = async (updatedCheckedState) =>{
       AsyncStorage.clear();
       await AsyncStorage.setItem("keberangkatan", JSON.stringify(updatedCheckedState));
     }
 
+  //Async Storage load
   const load = async() =>{
       let jsonValue = await AsyncStorage.getItem("keberangkatan");
 
@@ -44,11 +54,13 @@ export default function Keberangkatan({navigation}) {
       }
     }
 
+  //Load from Async storage everytime screen open
   useEffect(() => {
       load();
     },[]);
 
-    
+  
+  //progress const
   const progress = checkedState.filter(value => value === true).length / keberangkatanCheck.length;
 
     return (

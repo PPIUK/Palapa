@@ -1,3 +1,5 @@
+//Main Restoran Screen - Show all restaurant from database
+
 import React, { useState, useEffect} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, ScrollView, Dimensions, Image, Button, TextInput, Keyboard} from 'react-native';
 import {CustomHeader} from '../../components/CustomHeader';
@@ -6,6 +8,7 @@ import dataAPI from '../../database/dataAPI';
 
 import SearchBar from "react-native-dynamic-search-bar";
 
+// initialize ppi array with the first default value 'All PPI' for dropdown menu
 const ppi = 
   [{value:0, label: 'All City'}];
 
@@ -16,7 +19,7 @@ export default function RestoranMain({ navigation }) {
   const [data, setData] = useState([]); // [] = init value
   const [filteredData, setfilteredData] = useState([]);
   
-
+//Get data from database
   useEffect( () => {getDataFromAPI()}, [] )
 
   function getDataFromAPI() {
@@ -37,6 +40,7 @@ export default function RestoranMain({ navigation }) {
   const uniqueppi = [...new Map(data.map(item =>
     [item['city'], item])).values()];
     
+   //Append data from database (flag 1) to ppi array
   uniqueppi.map((item, index) => ( 
     ppi[index+1] = {value: index+1, label : item.city}
   ));
@@ -51,6 +55,8 @@ export default function RestoranMain({ navigation }) {
     }
   }
 
+
+  //filter function from search bar input
   function filterList(Text){
     if(Text !== ''){
       setfilteredData(data.filter(x => x.name.includes(Text)));
@@ -73,18 +79,8 @@ export default function RestoranMain({ navigation }) {
             Discover Indonesian cuisine all over the UK 
           </Text>
 
-          {/* <TouchableOpacity  style={styles.searchBox}>
-              <Text style={{flex:1, padding:10}}>
-                  Ketik nama restoran / Katering / Makanan
-              </Text> 
-              <View  style={{backgroundColor:'#004380', padding:10,borderRadius:15}}>
-                <FontAwesome name="search" size={20} color="white"/>
-              </View>
-          </TouchableOpacity> */}
-
         <SearchBar
           placeholder="Ketik nama restoran"
-          //onPress={() => alert("onPress")}
           onChangeText={(text) => filterList(text)}
           style={{borderWidth:2, borderColor:'#004380'}}
         />
@@ -108,7 +104,8 @@ export default function RestoranMain({ navigation }) {
           </View>
         </View>
 
-        {/* <View style={styles.tab}>
+        {/*  Tab Navigation for future  development according to figma
+        <View style={styles.tab}>
           <TouchableOpacity style={{flex:1, alignItems:'center'}}>
             <Text style={{color: 'white'}}>Semua</Text>
           </TouchableOpacity>

@@ -1,3 +1,5 @@
+// Child screen of Imigrasi, detail of the selected visa 
+
 import React, { useState, useEffect} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, ScrollView, Dimensions} from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
@@ -14,8 +16,13 @@ const transition = (
 
 export default function Visa({ navigation , route}) {
   const [currentIndex, setCurrentIndex] = React.useState(null);
+  
+  //get type of visa selected from Imigrasi screen
   const {visa} = route.params;
+
+  //Reference for transition
   const ref = React.useRef();
+
     return (
       <Transitioning.View 
         ref={ref}

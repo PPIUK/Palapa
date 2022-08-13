@@ -1,3 +1,7 @@
+/*
+Imigrasi Screen - Showing all type of visa desc and button to Visa screen
+*/
+
 import React, { useState, useEffect} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, ScrollView, Dimensions, Image} from 'react-native';
 import { AntDesign } from '@expo/vector-icons';

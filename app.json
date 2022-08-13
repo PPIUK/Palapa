@@ -23,8 +23,11 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
+        
       },
-      "package": "com.PPIUK.PPIUK"
+      "versionCode": 5,
+      "package": "com.PPIUK.PALAPA",
+      "permissions": []
     },
     "web": {
       "favicon": "./assets/favicon.png"

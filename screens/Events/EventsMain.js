@@ -1,10 +1,15 @@
+/*
+Eventmain Screen, showing all event from event database that has flag of 1
+Flow : Eventmain -> DetailEvent -> EventLink(Webview)
+*/
+
 import React, { useState, useEffect} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, ScrollView, Dimensions, Image} from 'react-native';
 import {CustomHeader} from '../../components/CustomHeader';
 import DropDownPicker from 'react-native-dropdown-picker';
 import dataAPI from '../../database/dataAPI';
 
-// initialize ppi array with the first default value 'all ppi'
+// initialize ppi array with the first default value 'All PPI' for dropdown menu
 const ppi = 
   [{value:0, label: 'All PPI'}];
 
@@ -14,6 +19,7 @@ export default function EventsMain({ navigation }) {
   const [items, setItems] = useState(ppi);
   const [data, setData] = useState([]); // [] = init value
 
+  //Get data from database
   useEffect( () => {getDataFromAPI()}, [] )
 
   function getDataFromAPI() {
@@ -32,15 +38,16 @@ export default function EventsMain({ navigation }) {
   // filter data that flag 1.0
   var flagged = data.filter(x => x.flag == "1.0");
 
-  // take all unique ppi that has event (the las event every ppi)
+  // take all unique ppi that has event (the last event every ppi)
   const uniqueppi = [...new Map(flagged.map(item =>
     [item['city'], item])).values()];
-    
+  
+  //Append data from database (flag 1) to ppi array
   uniqueppi.map((item, index) => ( 
     ppi[index+1] = {value: index+1, label : item.city}
   ));
 
-  // return all events with selected ppi
+  // return all events with selected ppi from dropdown menu
   function eventslist (selected){
     if(selected == '0'){
       return(flagged)
@@ -80,7 +87,7 @@ export default function EventsMain({ navigation }) {
         </View>
        
         <ScrollView style={{marginVertical:15}}>
-          {eventslist(value).map(({_id, name, penyelenggara, date},index)=>{
+          {eventslist(value).map(({name, penyelenggara, date},index)=>{
             return(
               <TouchableOpacity 
                 key={index} 
