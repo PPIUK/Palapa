@@ -142,11 +142,12 @@ make sure to follow all the steps in the EAS build [documentation](https://docs.
 
 ## Google Form
 
-Event organizer and Restaurant owner first has to fill google form with all the required field. these submission then will stored in google sheets automatically
+Event organizer and Restaurant owner first has to fill google form with all the required field. These submission then will be stored in google sheets automatically
 
 ## AppScript
 
-Data from Google Sheets then will be stored in MongoDB database automatically with AppScript. See the documentation [here](https://docs.google.com/document/d/1liBr0oHrYDYdpqjkKjvx8NaxqGHyM0kJC6Asjzn5gJQ/edit?usp=sharing)
+Data from Google Sheets then will be stored in MongoDB database automatically with AppScript. 
+Each week on Monday, the AppScript trigger will activate to update the data from Google Sheets to MongoDB. If there is any changes you would like to update outside the designated trigger time, then open AppScript and Run the script. If any authorisation/authentication issue arises, see the documentation [here](https://docs.google.com/document/d/1liBr0oHrYDYdpqjkKjvx8NaxqGHyM0kJC6Asjzn5gJQ/edit?usp=sharing)
 
 # Support and Contact
 
