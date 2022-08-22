@@ -6,7 +6,27 @@ import {CustomHeader} from '../../components/CustomHeader';
 
 import { Feather } from '@expo/vector-icons';
 
+const RemoteImage = ({uri, desiredWidth}) => {
+  const [desiredHeight, setDesiredHeight] = React.useState(0)
 
+  Image.getSize(uri, (width, height) => {
+      setDesiredHeight(desiredWidth / width * height)
+  })
+
+  return (
+      <Image
+          source={{uri}}
+          style={{
+              borderWidth: 1,
+              width: desiredWidth,
+              height: desiredHeight,
+              borderRadius: 15,
+              marginVertical:10,
+              alignSelf: 'center',
+          }}
+      />
+  )
+}
 export default function DetailEvents({ navigation, route }) {
 
   //get data from parent
@@ -18,7 +38,10 @@ export default function DetailEvents({ navigation, route }) {
         <CustomHeader isHome={false} navigation={navigation}/>
          <ScrollView>
 
-        <Image style={styles.banner} source={{uri: banner}} />
+        <RemoteImage
+                uri = {banner}
+                desiredWidth={Dimensions.get('window').width - 50}
+            />
 
           <Text style={styles.title}>
             {event.name}
@@ -110,13 +133,6 @@ export default function DetailEvents({ navigation, route }) {
       alignSelf: 'flex-start',
       color: 'black',
       marginHorizontal: 15,
-    },
-    banner:{
-      width: Dimensions.get('window').width - 50,
-      height: 150,
-      borderRadius: 15,
-      marginVertical:10,
-      alignSelf: 'center',
     },
     desc:{
         flexDirection: 'row',
