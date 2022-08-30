@@ -1,34 +1,34 @@
 [
-    {
-      "title" : "Passport",
-      "desc" : "Paspor adalah dokumen resmi yang dikeluarkan oleh pejabat yang berwenang dari suatu negara yang memuat identitas pemegangnya dan berlaku untuk melakukan perjalanan antar negara"
-    },
-    {
-      "title" : "Visa",
-      "desc" : "Visa adalah suatu dokumen yang menjadi alat bukti diijinkannya seseorang untuk memasuki suatu negara."
-    },
-    {
-      "title" : "Confirmation of Acceptance for studies (CAS)",
-      "desc" : "Confirmation of Acceptance for studies (CAS)"
-    },
-    {
-      "title" : "Biometric Residence Permit (BRP) - Jika ada",
-      "desc" : "Biometric Residence Permit (BRP)"
-    },
-    {
-      "title" : "Letter of Acceptance (LoA)",
-      "desc" : "Letter of Acceptance (LoA) dari Universitas"
-    },
-    {
-      "title" : "Vaccination Certificate",
-      "desc" : "Vaccination Certificate"
-    },
-    {
-      "title" : "Lapor diri ke KBRI",
-      "desc" : "https://consular.indonesianembassy.org.uk/laporonline/"
-    },
-    {
-      "title" : "Ambil BRP",
-      "desc" : "Pengambilan BRP sesuai dengan lokasi yang telah ditentukan saat pembuatan Visa (Biasanya BRP diambil di Universitas)"
-    }
-  ]
+  {
+    "title": "Passport",
+    "desc": "Paspor adalah dokumen resmi yang dikeluarkan oleh pejabat yang berwenang dari suatu negara yang memuat identitas pemegangnya dan berlaku untuk melakukan perjalanan antar negara"
+  },
+  {
+    "title": "Visa",
+    "desc": "Visa adalah suatu dokumen yang menjadi alat bukti diijinkannya seseorang untuk memasuki suatu negara."
+  },
+  {
+    "title": "Confirmation of Acceptance for studies (CAS)",
+    "desc": "Confirmation of Acceptance for studies (CAS)"
+  },
+  {
+    "title": "Biometric Residence Permit (BRP) - Jika ada",
+    "desc": "Biometric Residence Permit (BRP)"
+  },
+  {
+    "title": "Letter of Acceptance (LoA)",
+    "desc": "Letter of Acceptance (LoA) dari Universitas"
+  },
+  {
+    "title": "Vaccination Certificate",
+    "desc": "Vaccination Certificate"
+  },
+  {
+    "title": "Lapor diri ke KBRI",
+    "desc": "https://consular.indonesianembassy.org.uk/laporonline/"
+  },
+  {
+    "title": "Ambil BRP",
+    "desc": "Pengambilan BRP sesuai dengan lokasi yang telah ditentukan saat pembuatan Visa (Biasanya BRP diambil di Universitas)"
+  }
+]

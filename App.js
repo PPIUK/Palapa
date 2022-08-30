@@ -1,31 +1,27 @@
-import 'react-native-gesture-handler';
-import * as React from 'react';
+import "react-native-gesture-handler";
+import * as React from "react";
 import { Asset } from "expo-asset";
 import Constants from "expo-constants";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Animated, StyleSheet, View } from "react-native";
-import { NavigationContainer } from '@react-navigation/native';
-import { MainDrawer } from './nav/Drawer'
+import { NavigationContainer } from "@react-navigation/native";
+import { MainDrawer } from "./nav/Drawer";
 
 /* Main app function */
 export default function App() {
   return (
     // Calling animation on splash screen
     <AnimatedAppLoader image={{ uri: Constants.manifest.splash.image }}>
-
       {/* Main content */}
       <NavigationContainer>
-        <MainDrawer/>
+        <MainDrawer />
       </NavigationContainer>
       {/*  */}
-
     </AnimatedAppLoader>
   );
 }
 /* */
-
-
 
 /* 
 Splash Screen Animation 
