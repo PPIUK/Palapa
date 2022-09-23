@@ -19,9 +19,9 @@ import { CustomHeader } from "../components/CustomHeader";
 //Transition config
 const transition = (
   <Transition.Together>
-    <Transition.In type="fade" durationMs={200} />
+    <Transition.In type="scale" durationMs={200} />
     <Transition.Change />
-    <Transition.Out type="fade" durationMs={200} />
+    <Transition.Out type="scale" durationMs={200} />
   </Transition.Together>
 );
 

@@ -15,53 +15,19 @@ import {
 import { AntDesign } from "@expo/vector-icons";
 import { Transition, Transitioning } from "react-native-reanimated";
 import { CustomHeader } from "../../components/CustomHeader";
-import dataAPI from "../../database/dataAPI";
+import imigrasi from "../data/imigrasi/";
 
 const transition = (
   <Transition.Together>
-    <Transition.In type="fade" durationMs={200} />
+    <Transition.In type="scale" durationMs={300} />
     <Transition.Change />
     <Transition.Out type="fade" durationMs={200} />
   </Transition.Together>
 );
 
 export default function Imigrasi({ navigation }) {
-  const [data, setData] = useState([]); // [] = init value
   const [currentIndex, setCurrentIndex] = React.useState(null);
   const ref = React.useRef();
-
-  useEffect(() => {
-    getDataFromAPI();
-  }, []);
-
-  function getDataFromAPI() {
-    dataAPI
-      .get("app/application-0-jjbbw/endpoint/HTTP/get_imigrasi")
-      .then(function (response) {
-        setData(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
-
-  if (!data) {
-    return (
-      <Transitioning.View
-        ref={ref}
-        transition={transition}
-        style={styles.container}
-      >
-        <CustomHeader isHome={true} navigation={navigation} />
-        <Text style={styles.title}>IMIGRASI</Text>
-        <Image
-          style={styles.banner}
-          source={require("../../assets/visa.jpg")}
-        />
-        <Text style={styles.title}>Jenis Visa UK</Text>
-      </Transitioning.View>
-    );
-  }
 
   return (
     <Transitioning.View
@@ -72,10 +38,10 @@ export default function Imigrasi({ navigation }) {
       <CustomHeader isHome={true} navigation={navigation} />
       <Text style={styles.title}>IMIGRASI</Text>
       <Image style={styles.banner} source={require("../../assets/visa.jpg")} />
-      <Text style={styles.title}>Jenis Visa UK</Text>
+      <Text style={styles.subtitle}>Jenis Visa UK</Text>
 
       <ScrollView>
-        {data.map(({ _id, title, desc }, index) => {
+        {imigrasi.map(({ title, desc }, index) => {
           return (
             <TouchableOpacity
               key={title}
@@ -85,77 +51,46 @@ export default function Imigrasi({ navigation }) {
               }}
               style={styles.cardContainer}
             >
-              {/* {console.log(data[index])} */}
               {index === currentIndex ? (
                 <View style={{ backgroundColor: "#D1E4FF", borderRadius: 15 }}>
                   <View style={styles.card}>
                     <Text style={styles.heading}>{title}</Text>
-                    {index === currentIndex ? (
-                      <AntDesign
-                        name="right"
-                        size={15}
-                        style={{
-                          color: "black",
-                          padding: 15,
-                          transform: [{ rotate: "90deg" }],
-                        }}
-                      />
-                    ) : (
-                      <AntDesign
-                        name="right"
-                        size={15}
-                        style={{ color: "black", padding: 15 }}
-                      />
-                    )}
+                    <AntDesign
+                      name="right"
+                      size={15}
+                      style={{
+                        color: "black",
+                        padding: 15,
+                        transform: [{ rotate: "90deg" }],
+                      }}
+                    />
                   </View>
 
-                  {index === currentIndex && (
-                    <View style={styles.desc}>
-                      <Text style={{ flex: 1 }}>{desc}</Text>
-                      <TouchableOpacity
-                        style={styles.detail}
-                        onPress={() =>
-                          navigation.navigate("Visa", { visa: data[index] })
-                        }
-                      >
-                        <Text style={{ color: "white" }}>detail</Text>
-                      </TouchableOpacity>
-                    </View>
-                  )}
+                  <View style={styles.desc}>
+                    <Text style={{ flex: 1 }}>{desc}</Text>
+                    <TouchableOpacity
+                      style={styles.detail}
+                      onPress={() =>
+                        navigation.navigate("Visa", { visa: imigrasi[index] })
+                      }
+                    >
+                      <Text style={{ color: "white", fontWeight: "bold" }}>
+                        Detail
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
               ) : (
                 <View>
                   <View style={styles.card}>
                     <Text style={styles.heading}>{title}</Text>
-                    {index === currentIndex ? (
-                      <AntDesign
-                        name="right"
-                        size={15}
-                        style={{
-                          color: "black",
-                          padding: 15,
-                          transform: [{ rotate: "90deg" }],
-                        }}
-                      />
-                    ) : (
-                      <AntDesign
-                        name="right"
-                        size={15}
-                        style={{ color: "black", padding: 15 }}
-                      />
-                    )}
+
+                    <AntDesign
+                      name="right"
+                      size={15}
+                      style={{ color: "black", padding: 15 }}
+                    />
                   </View>
-                  {index === currentIndex && (
-                    <View style={styles.desc}>
-                      <Text style={{ flex: 1 }}>{desc}</Text>
-                      <TouchableOpacity
-                        style={styles.detail}
-                        onPress={() => navigation.navigate("Visa", title)}
-                      >
-                        <Text style={{ color: "white" }}>detail</Text>
-                      </TouchableOpacity>
-                    </View>
-                  )}
                 </View>
               )}
             </TouchableOpacity>
@@ -178,11 +113,17 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     alignSelf: "flex-start",
   },
+  subtitle: {
+    margin: 20,
+    fontSize: 25,
+    fontWeight: "bold",
+    alignSelf: "flex-start",
+  },
   banner: {
     width: Dimensions.get("window").width - 50,
-    height: 250,
+    height: 150,
     borderRadius: 15,
-    resizeMode: "contain",
+    resizeMode: "cover",
   },
   cardContainer: {
     margin: 10,
@@ -205,7 +146,6 @@ const styles = StyleSheet.create({
     color: "black",
   },
   desc: {
-    flexDirection: "row",
     flex: 1,
     padding: 15,
     alignItems: "center",
@@ -214,9 +154,10 @@ const styles = StyleSheet.create({
   },
   detail: {
     backgroundColor: "#004380",
-    paddingHorizontal: 15,
     paddingVertical: 5,
     alignItems: "center",
-    borderRadius: 20,
+    borderRadius: 10,
+    width: "100%",
+    margin: 10,
   },
 });

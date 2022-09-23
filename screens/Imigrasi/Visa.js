@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   ScrollView,
   Dimensions,
+  Linking,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { Transition, Transitioning } from "react-native-reanimated";
@@ -15,9 +16,9 @@ import { CustomHeader } from "../../components/CustomHeader";
 
 const transition = (
   <Transition.Together>
-    <Transition.In type="fade" durationMs={200} />
+    <Transition.In type="scale" durationMs={300} />
     <Transition.Change />
-    <Transition.Out type="fade" durationMs={200} />
+    <Transition.Out type="scale" durationMs={200} />
   </Transition.Together>
 );
 
@@ -37,161 +38,135 @@ export default function Visa({ navigation, route }) {
       style={styles.container}
     >
       <CustomHeader isHome={false} navigation={navigation} />
-      <Text style={styles.title}>Pengurusan Visa ({visa.title})</Text>
-
-      <ScrollView>
+      <View style={styles.content}>
+        <Text style={styles.title}>{visa.title}</Text>
         <TouchableOpacity
-          key={"langkah"}
-          onPress={() => {
-            ref.current.animateNextTransition();
-            setCurrentIndex(0 === currentIndex ? null : 0);
-          }}
-          style={styles.cardContainer}
+          style={styles.link}
+          onPress={() => Linking.openURL(visa.link)}
         >
-          {0 === currentIndex ? (
-            <View style={{ backgroundColor: "#D1E4FF", borderRadius: 10 }}>
-              <View style={styles.card}>
-                <Text style={styles.heading}>Langkah Pembuatan Visa</Text>
-                {0 === currentIndex ? (
-                  <AntDesign
-                    name="right"
-                    size={15}
-                    style={{ padding: 15, transform: [{ rotate: "90deg" }] }}
-                  />
-                ) : (
-                  <AntDesign name="right" size={15} style={{ padding: 15 }} />
-                )}
-              </View>
-              {0 === currentIndex && (
-                <View style={styles.desc}>
-                  <Text>{visa.langkah}</Text>
-                </View>
-              )}
-            </View>
-          ) : (
-            <View>
-              <View style={styles.card}>
-                <Text style={styles.heading}>Langkah Pembuatan visa</Text>
-                {0 === currentIndex ? (
-                  <AntDesign
-                    name="right"
-                    size={15}
-                    style={{ padding: 15, transform: [{ rotate: "90deg" }] }}
-                  />
-                ) : (
-                  <AntDesign name="right" size={15} style={{ padding: 15 }} />
-                )}
-              </View>
-              {0 === currentIndex && (
-                <View style={styles.desc}>
-                  <Text>{visa.title}</Text>
-                </View>
-              )}
-            </View>
-          )}
+          <Text style={{ color: "#004380", textDecorationLine: "underline" }}>
+            {visa.link}
+          </Text>
         </TouchableOpacity>
+        <Text style={styles.subtitle}>{visa.desc}</Text>
 
-        <TouchableOpacity
-          key={"dokumen"}
-          onPress={() => {
-            ref.current.animateNextTransition();
-            setCurrentIndex(1 === currentIndex ? null : 1);
-          }}
-          style={styles.cardContainer}
-        >
-          {1 === currentIndex ? (
-            <View style={{ backgroundColor: "#D1E4FF", borderRadius: 10 }}>
-              <View style={styles.card}>
-                <Text style={styles.heading}>Dokumen yang diperlukan</Text>
-                {1 === currentIndex ? (
+        <ScrollView>
+          <TouchableOpacity
+            key={"langkah"}
+            onPress={() => {
+              ref.current.animateNextTransition();
+              setCurrentIndex(0 === currentIndex ? null : 0);
+            }}
+            style={styles.cardContainer}
+          >
+            {0 === currentIndex ? (
+              <View style={{ backgroundColor: "#D1E4FF", borderRadius: 10 }}>
+                <View style={styles.card}>
+                  <Text style={styles.heading}>Langkah Pembuatan Visa</Text>
+
                   <AntDesign
                     name="right"
                     size={15}
                     style={{ padding: 15, transform: [{ rotate: "90deg" }] }}
                   />
-                ) : (
-                  <AntDesign name="right" size={15} style={{ padding: 15 }} />
-                )}
-              </View>
-              {1 === currentIndex && (
-                <View style={styles.desc}>
-                  <Text>{visa.dokumen}</Text>
                 </View>
-              )}
-            </View>
-          ) : (
-            <View>
-              <View style={styles.card}>
-                <Text style={styles.heading}>Dokumen yang diperlukan</Text>
-                {1 === currentIndex ? (
-                  <AntDesign
-                    name="right"
-                    size={15}
-                    style={{ padding: 15, transform: [{ rotate: "90deg" }] }}
-                  />
-                ) : (
-                  <AntDesign name="right" size={15} style={{ padding: 15 }} />
-                )}
+                {visa.langkah.map((test, index) => {
+                  return (
+                    <View style={styles.desc} key={index}>
+                      <Text style={styles.number}>{index + 1}</Text>
+                      <Text style={{ flex: 1, marginHorizontal: 5 }}>
+                        {test}
+                      </Text>
+                    </View>
+                  );
+                })}
               </View>
-              {1 === currentIndex && (
-                <View style={styles.desc}>
-                  <Text>{visa.title}</Text>
+            ) : (
+              <View>
+                <View style={styles.card}>
+                  <Text style={styles.heading}>Langkah Pembuatan visa</Text>
+
+                  <AntDesign name="right" size={15} style={{ padding: 15 }} />
                 </View>
-              )}
-            </View>
-          )}
-        </TouchableOpacity>
-        <TouchableOpacity
-          key={"biaya"}
-          onPress={() => {
-            ref.current.animateNextTransition();
-            setCurrentIndex(2 === currentIndex ? null : 2);
-          }}
-          style={styles.cardContainer}
-        >
-          {2 === currentIndex ? (
-            <View style={{ backgroundColor: "#D1E4FF", borderRadius: 10 }}>
-              <View style={styles.card}>
-                <Text style={styles.heading}>Biaya Pembuatan Visa</Text>
-                {2 === currentIndex ? (
+              </View>
+            )}
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            key={"dokumen"}
+            onPress={() => {
+              ref.current.animateNextTransition();
+              setCurrentIndex(1 === currentIndex ? null : 1);
+            }}
+            style={styles.cardContainer}
+          >
+            {1 === currentIndex ? (
+              <View style={{ backgroundColor: "#D1E4FF", borderRadius: 10 }}>
+                <View style={styles.card}>
+                  <Text style={styles.heading}>Dokumen yang diperlukan</Text>
+
                   <AntDesign
                     name="right"
                     size={15}
                     style={{ padding: 15, transform: [{ rotate: "90deg" }] }}
                   />
-                ) : (
-                  <AntDesign name="right" size={15} style={{ padding: 15 }} />
-                )}
+                </View>
+
+                {visa.dokumen.map((test, index) => {
+                  return (
+                    <View style={styles.desc} key={index}>
+                      <Text style={styles.number}>{index + 1}</Text>
+                      <Text style={{ flex: 1, marginHorizontal: 5 }}>
+                        {test}
+                      </Text>
+                    </View>
+                  );
+                })}
               </View>
-              {2 === currentIndex && (
+            ) : (
+              <View>
+                <View style={styles.card}>
+                  <Text style={styles.heading}>Dokumen yang diperlukan</Text>
+
+                  <AntDesign name="right" size={15} style={{ padding: 15 }} />
+                </View>
+              </View>
+            )}
+          </TouchableOpacity>
+          <TouchableOpacity
+            key={"biaya"}
+            onPress={() => {
+              ref.current.animateNextTransition();
+              setCurrentIndex(2 === currentIndex ? null : 2);
+            }}
+            style={styles.cardContainer}
+          >
+            {2 === currentIndex ? (
+              <View style={{ backgroundColor: "#D1E4FF", borderRadius: 10 }}>
+                <View style={styles.card}>
+                  <Text style={styles.heading}>Biaya Pembuatan Visa</Text>
+
+                  <AntDesign
+                    name="right"
+                    size={15}
+                    style={{ padding: 15, transform: [{ rotate: "90deg" }] }}
+                  />
+                </View>
                 <View style={styles.desc}>
                   <Text>{visa.biaya}</Text>
                 </View>
-              )}
-            </View>
-          ) : (
-            <View>
-              <View style={styles.card}>
-                <Text style={styles.heading}>Biaya Pembuatan visa</Text>
-                {2 === currentIndex ? (
-                  <AntDesign
-                    name="right"
-                    size={15}
-                    style={{ padding: 15, transform: [{ rotate: "90deg" }] }}
-                  />
-                ) : (
-                  <AntDesign name="right" size={15} style={{ padding: 15 }} />
-                )}
               </View>
-              {2 === currentIndex && (
-                <View style={styles.desc}>
-                  <Text>{visa.title}</Text>
+            ) : (
+              <View>
+                <View style={styles.card}>
+                  <Text style={styles.heading}>Biaya Pembuatan visa</Text>
+                  <AntDesign name="right" size={15} style={{ padding: 15 }} />
                 </View>
-              )}
-            </View>
-          )}
-        </TouchableOpacity>
-      </ScrollView>
+              </View>
+            )}
+          </TouchableOpacity>
+        </ScrollView>
+      </View>
     </Transitioning.View>
   );
 }
@@ -202,14 +177,27 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     alignItems: "center",
   },
+  content: {
+    marginHorizontal: 24,
+  },
   title: {
-    margin: 24,
+    marginVertical: 15,
     fontSize: 25,
     fontWeight: "bold",
     alignSelf: "flex-start",
   },
+  subtitle: {
+    fontSize: 15,
+    alignSelf: "flex-start",
+    marginVertical: 10,
+  },
+  link: {
+    marginBottom: 10,
+    fontSize: 15,
+    alignSelf: "flex-start",
+  },
   cardContainer: {
-    margin: 10,
+    marginVertical: 10,
     borderRadius: 10,
     borderWidth: 1,
     borderColor: "#004380",
@@ -218,6 +206,16 @@ const styles = StyleSheet.create({
   card: {
     flexDirection: "row",
   },
+  number: {
+    borderColor: "#004380",
+    borderWidth: 1,
+    borderRadius: 5,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    fontWeight: "bold",
+    marginRight: 5,
+  },
+
   heading: {
     flex: 1,
     padding: 10,
@@ -226,7 +224,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   desc: {
-    padding: 15,
+    flexDirection: "row",
+    padding: 10,
     alignItems: "center",
   },
 });

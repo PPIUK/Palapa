@@ -53,16 +53,15 @@ export default function EventsMain({ navigation }) {
       .catch(function (error) {
         console.log(error);
       });
-    console.log(logo);
+    
   }
-
+  
   if (!data || !logo) {
     return null;
   }
 
   // filter data that flag 1.0
   var flagged = data.filter((x) => x.flag == "1.0");
-
   // take all unique ppi that has event (the last event every ppi)
   const uniqueppi = [
     ...new Map(flagged.map((item) => [item["city"], item])).values(),
@@ -81,6 +80,66 @@ export default function EventsMain({ navigation }) {
       return flagged.filter((x) => x.city === ppi[selected].label);
     }
   }
+
+  const RemoteImage = ({ uri, desiredWidth }) => {
+    const [desiredHeight, setDesiredHeight] = React.useState(0);
+  
+    Image.getSize(uri, (width, height) => {
+      setDesiredHeight((desiredWidth / width) * height);
+    });
+  
+    return (
+      <Image
+        source={{ uri }}
+        style={{
+          borderWidth: 1,
+          width: desiredWidth,
+          height: desiredHeight,
+          borderRadius: 15,
+          marginVertical: 10,
+          alignSelf: "center",
+        }}
+      />
+    );
+  };
+
+
+  // final list
+  var content = 
+    eventslist(value).map(({ name, penyelenggara, date }, index) => {
+      return (
+        <TouchableOpacity
+          key={index}
+          onPress={() => {
+            navigation.navigate("DetailEvent", {
+              event: eventslist(value)[index],
+            });
+          }}
+          style={styles.cardContainer}
+        >
+          <View style={{ flexDirection: "row", flex: 1 }}>
+            <Image
+              style={{
+                resizeMode: "contain",
+                height: 70,
+                width: 70,
+                margin: 5,
+              }}
+              source={{uri : "https://drive.google.com/uc?id=1XH6jR0WGus-xjHsvIog5BL2NEFITbtQ3"}}
+            />
+
+            <View style={{ flex: 1 }}>
+              <Text style={styles.h2}>
+                {date.slice(0, 10)} {date.slice(30)}
+              </Text>
+              <Text style={styles.h1}>{name}</Text>
+              <Text style={styles.h2}>by {penyelenggara}</Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+      );
+    })
+  
 
   return (
     <View style={styles.container}>
@@ -115,39 +174,12 @@ export default function EventsMain({ navigation }) {
       </View>
 
       <ScrollView style={{ marginVertical: 15 }}>
-        {eventslist(value).map(({ name, penyelenggara, date }, index) => {
-          return (
-            <TouchableOpacity
-              key={index}
-              onPress={() => {
-                navigation.navigate("DetailEvent", {
-                  event: eventslist(value)[index],
-                });
-              }}
-              style={styles.cardContainer}
-            >
-              <View style={{ flexDirection: "row", flex: 1 }}>
-                <Image
-                  style={{
-                    resizeMode: "contain",
-                    height: 70,
-                    width: 70,
-                    margin: 5,
-                  }}
-                  source={require("../../assets/icon.png")}
-                />
-
-                <View style={{ flex: 1 }}>
-                  <Text style={styles.h2}>
-                    {date.slice(0, 10)} {date.slice(30)}
-                  </Text>
-                  <Text style={styles.h1}>{name}</Text>
-                  <Text style={styles.h2}>by {penyelenggara}</Text>
-                </View>
-              </View>
-            </TouchableOpacity>
-          );
-        })}
+        {
+        content.length ? content : 
+        <Text style={{fontWeight:"bold", textAlign:"center"}}>
+          There's no event listed right now{"\n"}Check again next time!
+          </Text>
+        }
       </ScrollView>
     </View>
   );

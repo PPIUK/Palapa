@@ -1,0 +1,55 @@
+[
+  {
+    "title": "Students Visa",
+    "link": "https://www.gov.uk/student-visa",
+    "desc": "Visa ini menggantikan Tier 4 (General) student visa. Untuk siswa/mahasiswa berumur 16 tahun keatas",
+    "langkah": [
+      "Mengisi Form di https://www.gov.uk/student-visa/apply",
+      "Memilih Tanggal Pengambilan biometric (foto dan sidik jari) di https://visa.vfsglobal.com/idn/en/gbr"
+    ],
+    "dokumen": [
+      "Passport",
+      "CAS",
+      "Bukti Keuangan : LoG (Letter of Guarantee) bagi penerima beasiswa atau Rekening Koran 1 Bulan Terakhir (jumlah minimal ketersediaan dana dapat dilihat di www.gov.uk/student-visa/money)",
+      "Hasil Tes Kemampuan Bahasa Inggris",
+      "Hasil Tes Kesehatan (TBC)"
+    ],
+    "biaya": "£363 (Cek kurs Rupiah) + biaya asuransi kesehatan (https://www.immigration-health-surcharge.service.gov.uk/checker/Single)"
+  },
+  {
+    "title": "Dependants Visa",
+    "desc": "Visa ini ditujukan untuk partner (suami/istri) dan/atau anak (dibawah 18 tahun) bagi mahasiswa full-time yang memiliki masa sekolah 9 bulan atau lebih",
+    "langkah": [
+      "Isi form di https://visas-immigration.service.gov.uk/apply-uk-visa (pilih Partner Dependant Visa dan/atau Child Dependant Visa)",
+      "Melakukan pembayaran ",
+      "Isi tanggal pengambilan biometrik (Foto dan sidik jari)"
+    ],
+    "dokumen": [
+      "Bukti keterikatan dengan mahasiswa : Sertifikat/Buku Nikah (untuk partner) dan/atau Akta Lahir (untuk anak)",
+      "Bukti Keuangan: LoG bagi penerima beasiswa atau Rekening Koran dalam 1 bulan terakhir (jumlah minimal dapat dilihat di: https://www.gov.uk/student-visa/family-members)",
+      "Nomor applikasi visa mahasiswa (GWF - Global Web Form atau UAN - Unique Application Number)"
+    ],
+    "biaya": "£490 per orang + asuransi kesehatan (https://www.immigration-health-surcharge.service.gov.uk/checker/type)",
+    "link": "https://www.gov.uk/student-visa/family-members"
+  },
+  {
+    "title": "Student Child Visa",
+    "biaya": "£363 + biaya Asuransi Kesehatan (https://www.immigration-health-surcharge.service.gov.uk/checker/type)",
+    "link": "https://www.gov.uk/child-study-visa",
+    "desc": "Visa ini digunakan untuk anak usia 4 - 17 tahun dan ingin bersekolah di UK. visa ini menggantikan Tier 4 (Child) student visa",
+    "langkah": [
+      "Isi form di https://www.gov.uk/child-study-visa/apply ",
+      "Melakukan pembayaran ",
+      "Isi tanggal pengambilan biometrik (Foto dan sidik jari)"
+    ],
+    "dokumen": [
+      "Passport",
+      "CAS (Confirmation of Acceptance for Studies)",
+      "bukti hubungan dengan orang tua (Akta Lahir / Kartu Keluarga)",
+      "Hasil tes kesehatan (TB)",
+      "Bukti tertulis dari sponsor finansial (orang tua/lembaga lain) untuk membiayai sekolah dan biaya hidup",
+      "Bukti tempat tinggal",
+      "Izin tertulis dari orang tua mengenai: applikasi visa, tinggal di UK, perjalanan ke UK;"
+    ]
+  }
+]

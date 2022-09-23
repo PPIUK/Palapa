@@ -18,6 +18,14 @@ import { CustomHeader } from "../components/CustomHeader";
 import { ScrollView } from "react-native-gesture-handler";
 import { NewsCarousel } from "../components/NewsCarousel";
 
+// Icons
+import { MaterialIcons } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
+
+
 export default function HomeScreen({ navigation }) {
   return (
     <>
@@ -31,84 +39,126 @@ export default function HomeScreen({ navigation }) {
               style={styles.Button}
               activeOpacity={0.5}
               onPress={() => navigation.navigate("News", { uri: "/" })}
-            >
+            ><FontAwesome 
+                  name={"newspaper-o"}
+                  size={30} 
+                  color={"white"} 
+                  style={{marginLeft: 20}}
+              />
               <Text style={styles.buttonTextStyle}>News</Text>
-              <Image
+              {/* <Image
                 style={styles.buttonImageIconStyle}
                 source={require("../assets/news.png")}
-              />
+              /> */}
+              
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.Button}
               activeOpacity={0.5}
               onPress={() => navigation.navigate("Keberangkatan")}
             >
+              <MaterialIcons 
+            name={'flight-takeoff'}
+            size={35} 
+            color={"white"} 
+            style={{marginLeft: 20}}
+        />
               <Text style={styles.buttonTextStyle}>
                 Checklist Keberangkatan ke UK
               </Text>
-              <Image
+              {/* <Image
                 style={styles.buttonImageIconStyle}
                 source={require("../assets/planeUK.png")}
-              />
+              /> */}
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.Button}
               activeOpacity={0.5}
               onPress={() => navigation.navigate("Kepulangan")}
             >
+              <MaterialIcons 
+            name={'flight-land'}
+            size={35} 
+            color={"white"} 
+            style={{marginLeft: 20}}
+        />
               <Text style={styles.buttonTextStyle}>
                 Checklist Kepulangan ke Indonesia
               </Text>
-              <Image
+              {/* <Image
                 style={styles.buttonImageIconStyle}
                 source={require("../assets/planeid.png")}
-              />
+              /> */}
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.Button}
               activeOpacity={0.5}
               onPress={() => navigation.navigate("Imigrasi")}
             >
+              <FontAwesome5 
+            name={'passport'}
+            size={30} 
+            color={"white"} 
+            style={{marginLeft: 20}}
+        />
               <Text style={styles.buttonTextStyle}>Info terkait Imigrasi</Text>
-              <Image
+              {/* <Image
                 style={styles.buttonImageIconStyle}
                 source={require("../assets/imigrasi.png")}
-              />
+              /> */}
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.Button}
               activeOpacity={0.5}
               onPress={() => navigation.navigate("Restoran Indonesia")}
             >
+              <Ionicons 
+            name={'restaurant-outline'}
+            size={30} 
+            color={"white"} 
+            style={{marginLeft: 20}}
+        />
               <Text style={styles.buttonTextStyle}>
                 Daftar Restoran & Catering Indonesia di UK
               </Text>
-              <Image
+              {/* <Image
                 style={styles.buttonImageIconStyle}
                 source={require("../assets/food.png")}
-              />
+              /> */}
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.Button}
               activeOpacity={0.5}
               onPress={() => navigation.navigate("Events")}
             >
+              <MaterialIcons
+            name={'event'}
+            size={30} 
+            color={"white"} 
+            style={{marginLeft: 20}}
+        />
               <Text style={styles.buttonTextStyle}>Events</Text>
-              <Image
+              {/* <Image
                 style={styles.buttonImageIconStyle}
                 source={require("../assets/event.png")}
-              />
+              /> */}
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.Button}
               activeOpacity={0.5}
               onPress={() => navigation.navigate("Kontak")}
             >
+              <AntDesign
+            name={'contacts'}
+            size={30} 
+            color={"white"} 
+            style={{marginLeft: 20}}
+        />
               <Text style={styles.buttonTextStyle}>Kontak</Text>
-              <Image
+              {/* <Image
                 style={styles.buttonImageIconStyle}
                 source={require("../assets/contact.png")}
-              />
+              /> */}
             </TouchableOpacity>
           </View>
         </SafeAreaView>
@@ -132,8 +182,8 @@ const styles = StyleSheet.create({
     borderColor: "#fff",
     height: 60,
     borderRadius: 10,
-    margin: 10,
-    padding: 0,
+    marginHorizontal: 10,
+    marginVertical: 7,
   },
   buttonImageIconStyle: {
     padding: 10,
